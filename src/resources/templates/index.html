@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +8,14 @@
     </head>
 
     <body>
-        <nav>
-            <a href="{{ url_for('upload') }}">Đăng tải</a>
-            <a href="{{ url_for('createlisting') }}">Pass tài liệu</a>
-            <a href="{{ url_for('mydocument') }}">Quản lý tài liệu</a>
-            <a href="{{ url_for('register') }}">Tạo tài khoản</a>
-            <a href="{{ url_for('login') }}">Đăng nhập</a>
-        </nav>
+        <div id="navbar">
+            <nav>
+                <a href="{{ url_for('upload') }}">Đăng tải</a>
+                <a href="{{ url_for('createlisting') }}">Pass tài liệu</a>
+                <a href="{{ url_for('mydocument') }}">Quản lý tài liệu</a>
+                <a href="{{ url_for('register') }}">Tạo tài khoản</a>
+                <a href="{{ url_for('login') }}">Đăng nhập</a>
+            </nav>
+        </div>
     </body>
 </html>
