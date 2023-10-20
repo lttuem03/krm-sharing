@@ -1,10 +1,10 @@
-import re
-
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
 
 from .database import db, User
+from .utils import check_email_availability, check_username_availability, validate_email, validate_username, validate_password
 
 views = Blueprint('views', __name__)
 
@@ -34,28 +34,31 @@ def login():
 @views.route('/register/', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        emailpattern = '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+        name = request.form.get('name')
         email = request.form.get('email')
+        role = request.form.get('role')
+        school = request.form.get('school')
         username = request.form.get('username')
-        password1 = request.form.get('password1')
-        password2 = request.form.get('password2')
+        password = request.form.get('password')
+        repeat_password = request.form.get('repeat_password')
 
-        user = User.query.filter_by(email=email).first()
-        if user:
-            flash('Email đã được đăng ký.', category='error')
-        elif not re.match(emailpattern, email):
-            flash('Định dạng email sai.', category='error')
-        elif len(username) < 2:
-            flash('Không cho phép username 1 ký tự.', category='error')
-        elif password1 != password2:
-            flash('Mật khẩu không khớp.', category='error')
-        elif len(password1) < 7:
-            flash('Mật khẩu phải chứa ít nhất 7 ký tự.', category='error')
-        else:
-            new_user = User(email=email, username=username, password=generate_password_hash(
-                password1, method='sha256'))
+        all_checks_pass = validate_email(email) \
+            and check_email_availability(email) \
+            and validate_username(username) \
+            and check_username_availability(username) \
+            and validate_password(password, repeat_password)
+        
+        if all_checks_pass:
+            if role == "Chọn công việc hiện tại":
+                role = None
+
+            if school == "":
+                school = None
+            
+            new_user = User(name, role, school, email, username, hpassword=generate_password_hash(password, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
+
             login_user(new_user, remember=True)
             flash('Tạo tài khoản thành công!', category='success')
             return redirect(url_for('views.home'))

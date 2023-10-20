@@ -3,40 +3,40 @@ content %}
 <form method="POST">
     <h3 align="center">Đăng ký</h3>
     <div class="form-group">
-        <label for="email">Họ và tên</label>
-        <input type="email" class="form-control" id="name" name="name" placeholder="Nhập họ và tên" />
+        <label for="name">Họ và tên</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên" required/>
     </div>
 
-    <label for="email">Bạn đang là...</label>
+    <label for="role">Bạn đang là...</label>
     <select class="form-select" aria-label="role-select" id="role" name="role">
         <option selected>Chọn công việc hiện tại</option>
-        <option value="1">Sinh viên</option>
-        <option value="2">Giảng viên</option>
-        <option value="3">Học sinh</option>
-        <option value="4">Nghiên cứu sinh</option>
-        <option value="5">Khác</option>
+        <option value="Sinh viên">Sinh viên</option>
+        <option value="Giảng viên">Giảng viên</option>
+        <option value="Học sinh">Học sinh</option>
+        <option value="Nghiên cứu sinh">Nghiên cứu sinh</option>
+        <option value="Khác">Khác</option>
       </select>
     <!--Why so many form group ?-->
     <div class="form-group">
-        <label for="email">Bạn đang công tác tại</label>
-        <input type="email" class="form-control" id="school" name="school" placeholder="Nhập nơi công tác" />
+        <label for="school">Bạn đang công tác tại</label>
+        <input type="text" class="form-control" id="school" name="school" placeholder="Nhập nơi công tác" />
     </div>
 
     <div class="form-group">
         <label for="email">Địa chỉ Email</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email" />
+        <input type="email" class="form-control" id="email" name="email" placeholder="Nhập địa chỉ email" required/>
     </div>
     <div class="form-group">
         <label for="username">Tên đăng nhập</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" />
+        <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập (5-24 kí tự)" required/>
     </div>
     <div class="form-group">
-        <label for="password1">Mật khẩu</label>
-        <input type="password" class="form-control" id="password1" name="password1" placeholder="Mật khẩu" />
+        <label for="password">Mật khẩu</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required/>
     </div>
     <div class="form-group">
-        <label for="password2">Xác nhận mật khẩu </label>
-        <input type="password" class="form-control" id="password2" name="password2" placeholder="Xác nhận mật khẩu" />
+        <label for="repeat_password">Nhập lại mật khẩu </label>
+        <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Nhập lại mật khẩu" required/>
     </div>
     <br />
     <button type="submit" class="btn btn-primary">Xác nhận</button>
