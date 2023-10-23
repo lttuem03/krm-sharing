@@ -5,7 +5,7 @@ db = SQLAlchemy()
 DB_NAME = "database.db"
 
 class User(db.Model, UserMixin):
-    _id = db.Column("id", db.Integer, nullable=False, primary_key=True) # _id means id is the primary key of the User table, is automatically created
+    id = db.Column("id", db.Integer, nullable=False, primary_key=True) # _id means id is the primary key of the User table, is automatically created
     name = db.Column(db.Unicode(150), nullable=False, unique=False)
     role = db.Column(db.Unicode(26), nullable=True, unique=False)
     school = db.Column(db.Unicode(150), nullable=True, unique=False)

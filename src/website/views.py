@@ -10,7 +10,7 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', user=current_user)
 
 @views.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -20,10 +20,10 @@ def login():
 
         user = User.query.filter_by(email=email).first()
         if user:
-            if check_password_hash(user.password, password):
+            if check_password_hash(user.hpassword, password):
                 flash('Đăng nhập thành công!', category='success')
                 login_user(user, remember=True)
-                return redirect(url_for('views.home'))
+                return redirect(url_for('views.index'))
             else:
                 flash('Sai mật khẩu.', category='error')
         else:
@@ -55,13 +55,13 @@ def register():
             if school == "":
                 school = None
             
-            new_user = User(name, role, school, email, username, hpassword=generate_password_hash(password, method='sha256'))
+            new_user = User(name, role, school, email, username, hpassword=generate_password_hash(password, method='pbkdf2'))
             db.session.add(new_user)
             db.session.commit()
 
             login_user(new_user, remember=True)
             flash('Tạo tài khoản thành công!', category='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.index'))
 
     return render_template('register.html', user=current_user)
 

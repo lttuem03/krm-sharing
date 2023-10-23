@@ -9,10 +9,6 @@ a{
     font-family: NotoSans;
 }
 
-#navbar{
-    height: 120px;
-    background-color: black;
-    margin-top: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
+h1{
+    color: white;
 }
