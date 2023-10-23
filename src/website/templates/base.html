@@ -14,38 +14,43 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('views.upload') }}">Đăng tải</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('views.createlisting') }}">Pass tài liệu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('views.mydocument') }}">Quản lý tài liệu</a>
-                </li>
-            </ul>
-        </div>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="krm-sharing: Home">
+            </a>
 
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('views.upload') }}">Đăng tải</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.createlisting') }}">Pass tài liệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.mydocument') }}">Quản lý tài liệu</a>
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ms-auto">
+                    {%if user.is_authenticated == False %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.register') }}">Tạo tài khoản</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('views.login') }}">Đăng nhập</a>
+                    </li>
+                    {%else%}
+                    <li class="nav-item">
+                        <h1>{{user.name}}</h1>
+                    </li>
+                    {%endif%}
+                </ul>
+            </div>
+        </div>
         
-
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ms-auto">
-                {%if user.is_authenticated == False %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('views.register') }}">Tạo tài khoản</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('views.login') }}">Đăng nhập</a>
-                </li>
-                {%else%}
-                <li class="nav-item">
-                    <h1>{{user.name}}</h1>
-                </li>
-                {%endif%}
-            </ul>
-        </div>
     </nav>
 
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
