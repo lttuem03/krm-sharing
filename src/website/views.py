@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 
@@ -8,9 +8,18 @@ from .utils import check_email_availability, check_username_availability, valida
 
 views = Blueprint('views', __name__)
 
+
 @views.route('/')
 def index():
     return render_template('index.html', user=current_user)
+
+
+@views.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('views.index'))
+
 
 @views.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -31,6 +40,7 @@ def login():
 
     return render_template("login.html", user=current_user)
 
+
 @views.route('/register/', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -47,15 +57,16 @@ def register():
             and validate_username(username) \
             and check_username_availability(username) \
             and validate_password(password, repeat_password)
-        
+
         if all_checks_pass:
             if role == "Chọn công việc hiện tại":
                 role = None
 
             if school == "":
                 school = None
-            
-            new_user = User(name, role, school, email, username, hpassword=generate_password_hash(password, method='pbkdf2'))
+
+            new_user = User(name, role, school, email, username,
+                            hpassword=generate_password_hash(password, method='pbkdf2'))
             db.session.add(new_user)
             db.session.commit()
 
@@ -65,13 +76,16 @@ def register():
 
     return render_template('register.html', user=current_user)
 
+
 @views.route('/upload/')
 def upload():
     return render_template('upload.html')
 
+
 @views.route('/createlisting/')
 def createlisting():
     return render_template('create_listing.html')
+
 
 @views.route('/mydocument/')
 def mydocument():
