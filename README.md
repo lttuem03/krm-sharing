@@ -15,4 +15,4 @@ Update 'utils.py': https://github.com/maxcountryman/flask-login/blob/main/src/fl
 - Nguyễn Quang Khải
 - Nguyễn Hữu Nghĩa
 - Nguyễn Trung Dũng
-- Lê Trung Quý
+- Lê Quý Trung
