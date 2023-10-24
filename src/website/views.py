@@ -94,7 +94,12 @@ def createlisting():
 
 
 @views.route('/mydocument/')
+@login_required
 def mydocument():
-    if not current_user.is_authenticated:
-        redirect(url_for('views.login'))
-    return render_template('my_document.html')
+    return render_template('my_document.html', user=current_user)
+
+
+@views.route('/profile/')
+@login_required
+def profile():
+    return render_template('profile.html', user=current_user)
