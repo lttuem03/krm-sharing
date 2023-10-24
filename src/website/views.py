@@ -24,10 +24,12 @@ def logout():
 @views.route('/login/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form.get('email')
+        user_input = request.form.get('userinput')
         password = request.form.get('password')
 
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=user_input).first()
+        if user == None:
+            user = User.query.filter_by(username=user_input)
         if user:
             if check_password_hash(user.hpassword, password):
                 flash('Đăng nhập thành công!', category='success')
@@ -36,7 +38,7 @@ def login():
             else:
                 flash('Sai mật khẩu.', category='error')
         else:
-            flash('Email không tồn tại.', category='error')
+            flash('Email hoặc tên đăng nhập không tồn tại.', category='error')
 
     return render_template("login.html", user=current_user)
 
@@ -79,14 +81,20 @@ def register():
 
 @views.route('/upload/')
 def upload():
+    if not current_user.is_authenticated:
+        redirect(url_for('views.login'))
     return render_template('upload.html')
 
 
 @views.route('/createlisting/')
 def createlisting():
+    if not current_user.is_authenticated:
+        redirect(url_for('views.login'))
     return render_template('create_listing.html')
 
 
 @views.route('/mydocument/')
 def mydocument():
+    if not current_user.is_authenticated:
+        redirect(url_for('views.login'))
     return render_template('my_document.html')
