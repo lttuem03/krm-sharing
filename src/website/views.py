@@ -1,13 +1,22 @@
+import os
+
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_user, current_user, login_required, logout_user
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from .database import db, User
-from .utils import check_email_availability, check_username_availability, validate_email, validate_username, validate_password
+from .utils import (UPLOAD_FOLDER, 
+                    check_email_availability, 
+                    check_username_availability, 
+                    validate_email, 
+                    validate_username, 
+                    validate_password, 
+                    allowed_file
+                )
 
 views = Blueprint('views', __name__)
-
 
 @views.route('/')
 def index():
@@ -67,7 +76,7 @@ def register():
             if school == "":
                 school = None
 
-            new_user = User(name, role, school, email, username,
+            new_user = User(name=name, role=role, school=school, email=email, username=username,
                             hpassword=generate_password_hash(password, method='pbkdf2'))
             db.session.add(new_user)
             db.session.commit()
@@ -79,11 +88,33 @@ def register():
     return render_template('register.html', user=current_user)
 
 
-@views.route('/upload/')
+# reference: https://flask.palletsprojects.com/en/2.3.x/patterns/fileuploads/
+@views.route('/upload/', methods=['GET', 'POST'])
 def upload():
     if not current_user.is_authenticated:
-        redirect(url_for('views.login'))
-    return render_template('upload.html')
+        return redirect(url_for('views.login'))
+    
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+
+        file = request.files['file']
+        
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('Bạn chưa chọn tài liệu nào để tải lên!')
+            return redirect(request.url)
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(UPLOAD_FOLDER, filename))
+
+            return redirect(url_for('views.index'))
+
+    return render_template('upload.html', user=current_user)
 
 
 @views.route('/createlisting/')

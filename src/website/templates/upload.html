@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        
-    </head>
+{% extends "base.html" %}
 
-    <body>
-        <h1>Placeholder cho trang đăng tải tài liệu</h1>
-    </body>
-</html>
+{% block title %}Đăng tải{% endblock %}
+
+{% block content %}
+
+<h1>Đăng tải tài liệu mới</h1>
+
+<form method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=submit value=Upload>
+</form>
+
+{% endblock %}
