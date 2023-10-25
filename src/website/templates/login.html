@@ -1,14 +1,14 @@
-{% extends "base.html" %} {% block title %}Đăng nhập{% endblock %} {% block content
-%}
+{% extends "base.html" %} {% block title %}Đăng nhập{% endblock %} 
+{% block content%}
 <form method="POST">
     <h3 align="center">Đăng nhập</h3>
     <div class="form-group">
         <label for="userinput">Tên đăng nhập hoặc email</label>
-        <input type="userinput" class="form-control" id="userinput" name="userinput" placeholder="Tên đăng nhập hoặc email" />
+        <input type="userinput" class="form-control" id="userinput" name="userinput" placeholder="Tên đăng nhập hoặc email" required/>
     </div>
     <div class="form-group">
         <label for="password">Mật khẩu</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" />
+        <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required/>
     </div>
     <br />
     <button type="submit" class="btn btn-primary">Đăng nhập</button>

@@ -6,9 +6,46 @@
 
 <h1>Đăng tải tài liệu mới</h1>
 
-<form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-</form>
+<div class="container centered-frame">
+      <div class="card">
+            <div class="card-body">
+                  <form method="POST" enctype=multipart/form-data>
+                        <label for="document_file">Chọn tài liệu để tải lên: </label>
+                        <input type="file" name="file" style="display: block;">
+                        
+                        <div class="form-group">
+                              <label for="document_name">Tên tài liệu</label>
+                              <input type="text" class="form-control" id="document_name" name="document_name" placeholder='' required/>
+                        </div>
+                        
+                        <label for="document_type">Loại tài liệu</label>
+                        <select class="form-select" aria-label="type-select" id="document_type" name="document_type">
+                            <option selected>Chọn loại tài liệu</option>
+                            <option value="Slide">Slide</option>
+                            <option value="Ebook">Ebook</option>
+                            <option value="Đề thi cũ">Đề thi cũ</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+
+                        <div class="form-group">
+                              <label for="document_subject">Môn học/Chủ đề</label>
+                              <input type="text" class="form-control" id="document_subject" name="document_subject" placeholder='' required/>
+                        </div>
+                        
+                        <div class="form-group">
+                              <label for="document_year">Năm xuất bản (Nếu có)</label>
+                              <input type="text" class="form-control" id="document_year" name="document_year" placeholder='' />
+                        </div>
+
+                        <div class="form-group">
+                              <label for="document_school">Trường (Nếu có)</label>
+                              <input type="text" class="form-control" id="document_school" name="document_school" placeholder='' />
+                        </div>
+
+                        <input type=submit value="Tải lên">
+                  </form>
+            </div>
+      </div>
+</div>
 
 {% endblock %}

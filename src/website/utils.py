@@ -3,9 +3,7 @@ import re
 from flask import flash 
 
 from .database import db, User
-
-UPLOAD_FOLDER = 'D:\krm_file_server_haha'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'doc', 'pptx', 'ppt'}
+from .config import ALLOWED_EXTENSIONS
 
 def check_email_availability(email, msg="Email này đã được sử dụng, vui lòng chọn email khác"):
     user_by_email = User.query.filter_by(email=email).first()
@@ -58,3 +56,6 @@ def validate_password(password, repeat_password):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def byte_to_kilobyte(in_bytes):
+    return float(in_bytes / 1024)
