@@ -5,6 +5,7 @@ from .views import views
 from .database import db, DB_NAME, User
 from .auth import login_manager
 from .config import UPLOAD_FOLDER
+from .utils import get_uploader
 
 def app_instance():
     app = Flask(__name__)
@@ -19,6 +20,7 @@ def app_instance():
         db.create_all()
 
     app.register_blueprint(views, url_prefix='/')
+    app.jinja_env.globals.update(get_uploader=get_uploader)
 
     login_manager.login_view = 'views.login'
     login_manager.init_app(app)

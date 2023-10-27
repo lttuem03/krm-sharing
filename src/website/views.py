@@ -1,6 +1,7 @@
 import os
+import re
 
-from flask import Blueprint, render_template, flash, redirect, url_for, request
+from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify
 from flask_login import login_user, current_user, login_required, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
@@ -15,12 +16,17 @@ from .utils import (check_email_availability,
                     allowed_file,
                     byte_to_kilobyte
                 )
-from .config import UPLOAD_FOLDER
+from .config import UPLOAD_FOLDER, SEARCH_RESULTS_DISPLAY_LIMIT
 
 views = Blueprint('views', __name__)
 
-@views.route('/')
+@views.route('/', methods=['GET', 'POST'])
 def index():
+    search = request.form.get('search')
+
+    if search != "":
+        print(search)
+
     return render_template('index.html', user=current_user)
 
 
@@ -114,6 +120,10 @@ def upload(user=current_user):
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             
+            current_entry_count = Document.query.count()
+
+            filename = str(current_entry_count + 1) + '_' + filename
+
             document_url = os.path.join(UPLOAD_FOLDER, filename)
             
             document_name = request.form.get('document_name')
@@ -159,7 +169,17 @@ def createlisting():
 @views.route('/mydocument/')
 @login_required
 def mydocument():
-    return render_template('my_document.html', user=current_user)
+
+    uploaded_documents = Document.query.filter_by(uploader_id=current_user.id).all()
+
+    return render_template('my_document.html', user=current_user, uploaded=uploaded_documents)
+
+
+@views.route('/document/<id>')
+def document(id):
+    doc_query_result = Document.query.filter_by(id=id).first()
+
+    return render_template('document.html', user=current_user, document=doc_query_result)
 
 
 @views.route('/profile/')

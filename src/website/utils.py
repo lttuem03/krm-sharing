@@ -59,3 +59,8 @@ def allowed_file(filename):
 
 def byte_to_kilobyte(in_bytes):
     return float(in_bytes / 1024)
+
+def get_uploader(document):
+    uploader = User.query.filter_by(id=document.uploader_id).first()
+
+    return uploader

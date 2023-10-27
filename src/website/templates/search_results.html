@@ -1,0 +1,3 @@
+{% for document in documents %}
+    <li><a href="{{ url_for('views.document', id=document.id) }}">{{document.name}}</a></li>
+{% endfor %}
