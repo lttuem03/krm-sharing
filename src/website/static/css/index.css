@@ -25,5 +25,204 @@
 #form-buscar>.form-group>.input-group>.form-control {
     font-size: 16px;
     font-weight: 300;
+}
 
+#navbar{
+    height: 120px;
+    background-color: black;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+body, html {
+    height: 100%;
+}
+
+/*          Header style            */
+h1 {
+    font-size: 3.42331rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 3.75rem;
+    margin: 0.4rem;
+}
+
+h2 {
+    font-size: 2.5675rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.8125rem;
+    margin: 0.3rem;
+}
+
+h3 {
+    font-size: 1.92581rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.1875rem;
+    margin: 0.2rem;
+}
+
+h4 {
+    font-size: 1.44419rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.6875rem;
+    margin: 0.2rem;
+}
+
+h4.css-light-italic {
+    font-size: 1.44419rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6875rem; 
+    margin: 0.2rem;
+}
+
+h5 {
+    font-size: 1.08313rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.3125rem;
+    margin: 0.2rem;
+}
+
+h5.css-light-italic {
+    font-size: 1.08313rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.3125rem; 
+    margin: 0.2rem;
+}
+
+h6 {
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1rem;
+    margin: 0.1rem;
+}
+
+/*          Button style            */
+button.css-gradient-border {
+    border-radius: 1.875rem;
+    border: 3px solid transparent; 
+    background: 
+        linear-gradient(#FFF,#FFF) padding-box,
+        linear-gradient(to right, #FEFF5E,#FF8EA9) border-box;
+}
+
+button.css-gradient-border:hover {
+    background: linear-gradient(to right, #FEFF5E,#FF8EA9) border-box;
+    color: #5C5C5C;
+}
+
+button.css-gradient-border:active {
+    background: 
+        linear-gradient(rgba(62, 62, 62, 0.40), rgba(62, 62, 62, 0.40)), 
+        linear-gradient(90deg, #FEFF5E, #FF8EA9);
+    color: #5C5C5C;
+    background-clip: border-box;
+    background-origin: border-box;
+}
+
+button.css-content-center {
+    display: inline-flex;
+    width: fit-content;
+    padding: 0.25rem 0.75rem;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    gap: 1rem;
+}
+
+/*          Navigation bar style         */
+.css-nav {
+    border-bottom: 5px solid;
+    background: #F4F4F4;
+    color: black;
+    padding: 0.5rem 2.5rem;
+}
+
+.css-nav.css-gradient-border {
+    border-color: transparent;
+    background: 
+        linear-gradient(#F4F4F4, #F4F4F4) padding-box,
+        linear-gradient(to right, #FEFF5E,#FF8EA9) border-box;
+}
+
+/*          Container style         */
+.css-container {
+    padding: 1rem 1rem;
+    width: 30%;
+    height: fit-content;
+    display: flex;
+    flex-flow: column wrap;
+    align-self: center;
+    background: white padding-box;
+    justify-content: space-evenly;
+    align-items: stretch;
+    gap: 2.5rem;
+    border-radius: 10px;
+}
+
+.css-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.css-form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+}
+
+/*          Field style         */
+.css-field {
+    appearance: none;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    justify-content: left;
+}
+
+.css-field.css-gradient-border {
+    border-style: solid;
+    border-color: transparent;
+    background: 
+        linear-gradient(#fcfeff, #fcfeff) padding-box,
+        linear-gradient(to right, #FEFF5E,#FF8EA9) border-box;
+}
+
+.css-field.css-gradient-border:focus {
+    border-style: solid;
+    border-color: #00FAFF;
+}
+
+/*          Link style          */
+a.css-text-dark {
+    color: rgb(0, 0, 0);
+}
+
+a.css-text-dark:hover {
+    color: rgb(145, 143, 143);
+}
+
+a.css-text-dark:active {
+    color: #064580;
+}
+
+/*          Background          */
+.css-background-1 {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background:
+        linear-gradient(#0f0f0f9d, #0f0f0f9d),
+        url(..\\images\\background.jpg);
 }
