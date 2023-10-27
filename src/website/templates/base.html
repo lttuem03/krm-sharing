@@ -42,7 +42,7 @@
                 </li>
                 {%else%}
                 <li>
-                    <div class="dropdown-center" style="padding-right: 10px ;">
+                    <div class="dropdown" style="padding-right: 10px ;">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <span>
@@ -50,9 +50,9 @@
                             </span>
                             {{ user.name.split()[-1]}}
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-right">
+                        <ul class="dropdown-menu dropdown-menu-lg-end" >
                             <li>
-                                <p style="color: black; font-size: 16px;">{{user.name}}</p>
+                                <p style="color: black; font-size: 16px;text-align: center;">{{user.name}}</p>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
