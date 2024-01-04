@@ -14,7 +14,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md css-nav css-gradient-border">
-        <a class="nav-item nav-link" href="{{ url_for('views.index') }}">
+        <a class="nav-item nav-link" href="{{ url_for('home') }}">
             <span>
                 <img src="/static/images/logo.png" height="60px" style="padding-left: 10px;"></img>
             </span></a>
@@ -23,13 +23,13 @@
             <ul class="navbar-nav me-auto">
 
                 <li class="nav-item active">
-                    <h5><a class="nav-link css-text-dark" href="{{ url_for('views.upload') }}">Đăng tải</a></h5>
+                    <h5><a class="nav-link css-text-dark" href="#">Đăng tải</a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link css-text-dark" href="{{ url_for('views.createlisting') }}">Pass tài liệu</a></h5>
+                    <h5><a class="nav-link css-text-dark" href="#">Pass tài liệu</a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link css-text-dark" href="{{ url_for('views.mydocument') }}">Quản lý tài liệu</a></h5>
+                    <h5><a class="nav-link css-text-dark" href="#">Quản lý tài liệu</a></h5>
                 </li>
             </ul>
         </div>
@@ -38,10 +38,10 @@
             <ul class="navbar-nav ms-auto">
                 {%if user.is_authenticated == False %}
                 <li class="nav-item">
-                    <h5><a class="nav-link css-text-dark" href="{{ url_for('views.register') }}">Tạo tài khoản</a></h5>
+                    <h5><a class="nav-link css-text-dark" href="{{ url_for('register') }}">Tạo tài khoản</a></h5>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link css-text-dark" href="{{ url_for('views.login') }}">Đăng nhập</a></h5>
+                    <h5><a class="nav-link css-text-dark" href="{{ url_for('login') }}">Đăng nhập</a></h5>
                 </li>
                 {%else%}
                 <li>
@@ -60,10 +60,10 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{{url_for('views.profile')}}">Hồ sơ</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('views.mydocument') }}">Quản lý tài liệu</a>
+                            <li><a class="dropdown-item" href="#">Hồ sơ</a></li>
+                            <li><a class="dropdown-item" href="#">Quản lý tài liệu</a>
                             </li>
-                            <li><a class="dropdown-item" href="{{ url_for('views.logout') }}">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout') }}">Đăng xuất</a></li>
                         </ul>
                     </div>
                 </li>
