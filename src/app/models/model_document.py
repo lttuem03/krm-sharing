@@ -11,9 +11,10 @@ class Document(db.Model):
     subject = db.Column(db.Unicode(128), nullable=True, unique=False)
     school = db.Column(db.Unicode(150), nullable=True, unique=False)
     year = db.Column(db.Integer, nullable=True, unique=False)
-    url = db.Column(db.String(256), nullable=False, unique=True)
+    filename = db.Column(db.String(256), nullable=False, unique=True, default="") # format: "[krm-(id)] (the original file name)" 
+                                                                      # we pad ids to distinguish files with the same name
     # statistics
-    file_size = db.Column(db.Float, nullable=False, unique=False)
+    file_size = db.Column(db.Float, nullable=False, unique=False, default=0)
     view_count = db.Column(db.Integer, nullable=False, unique=False, default=0)
     download_count = db.Column(db.Integer, nullable=False, unique=False, default=0)
 

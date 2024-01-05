@@ -1,14 +1,12 @@
 from flask import (request, 
                    render_template, 
                    redirect, 
-                   url_for
-                   )
+                   url_for)
 from flask.views import View
 from flask_login import (current_user,
-                        login_required
-                        )
+                        login_required)
 
-from ..controllers import AuthenticationController
+from app.controllers import AuthenticationController
 
 class LoginView(View):
     decorators = []
@@ -48,7 +46,11 @@ class RegisterView(View):
             password = request.form.get("password")
             repeat_password = request.form.get("repeat_password")
 
-            user = AuthenticationController.process_register()
+            user = AuthenticationController.process_register(name=name,
+                                                             email=email,
+                                                             username=username,
+                                                             password=password,
+                                                             repeat_password=repeat_password)
 
             if user != None: # registering was successfull, redirect to login page
                 return redirect(url_for("login"))

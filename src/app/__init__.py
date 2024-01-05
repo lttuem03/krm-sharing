@@ -5,9 +5,10 @@ from app.controllers.controller_authentication import login_manager
 #from .utils import get_uploader
 
 from app.views import (HomeView,
-                   LoginView,
-                   LogoutView,
-                   RegisterView)
+                       LoginView,
+                       LogoutView,
+                       RegisterView,
+                       UploadView)
 
 from app.models import db
 #from models.model_user import User
@@ -32,9 +33,8 @@ krm_app_instance.add_url_rule("/", endpoint="home", view_func=HomeView.as_view("
 krm_app_instance.add_url_rule("/login/", endpoint="login", view_func=LoginView.as_view("login"))
 krm_app_instance.add_url_rule("/logout/", endpoint="logout", view_func=LogoutView.as_view("logout"))
 krm_app_instance.add_url_rule("/register/", endpoint="register", view_func=RegisterView.as_view("register"))
+krm_app_instance.add_url_rule("/upload/", endpoint="upload", view_func=UploadView.as_view("upload"))
 
-#krm_app_instance.register_blueprint(views, url_prefix='/')
-#krm_app_instance.jinja_env.globals.update(get_uploader=get_uploader)
-
+# Setting up flask-login
 login_manager.login_view = "login"
 login_manager.init_app(krm_app_instance)

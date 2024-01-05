@@ -9,7 +9,6 @@ from werkzeug.security import (check_password_hash,
 from app.models import db
 from app.models.query_engine import QueryEngine
 from app.models.model_user import User
-from app.models.model_document import Document
 
 from .utils import (check_email_availability,
                    check_username_availability,
