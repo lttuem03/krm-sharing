@@ -10,80 +10,53 @@
 </h>
 
 <div class="container">
-      <form method="POST" enctype="multipart/form-data">
-          <div class="row justify-content-center align-items-center">
-              <div class="col-md-4">
-                  <div class="mb-3">
-                      <label for="document_name" class="form-label">Tiêu đề</label>
-                      <input type="text" class="form-control" id="document_name" name="document_name" placeholder='' required>
-                  </div>
-  
-                  <div class="mb-3">
-                      <label for="document_describe" class="form-label">Mô tả tài liệu</label>
-                      <textarea class="form-control" id="document_describe" name="document_describe" rows="3"></textarea>
-                  </div>
-  
-                  <div class="mb-3">
-                      <label for="document_type" class="form-label">Thể loại</label>
-                      <input type="text" class="form-control" id="document_type" name="document_type" placeholder='' required>
-                  </div>
-                  <div class="mb-3">
-                        <label for="document_type" class="form-label">Trường</label>
-                        <input type="text" class="form-control" id="document_school" name="document_school" placeholder='' required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="document_type" class="form-label">Năm học</label>
-                        <input type="text" class="form-control" id="document_year" name="document_year" placeholder='' required>
-                    </div>
-              </div>
-  
-              <div class="col-md-4">
-                  <div class="mb-3">
-                      <label class="form-label">Loại tài liệu</label>
-                      <div class="form-check">
-                          <input class="form-check-input" type="radio" name="document_genre" id="document_genre1" value="dien_tu">
-                          <label class="form-check-label" for="document_genre1">
-                              Tài liệu điện tử
-                          </label>
-                      </div>
-                      <div class="form-check">
-                          <input class="form-check-input" type="radio" name="document_genre" id="document_genre2" value="giay">
-                          <label class="form-check-label" for="document_genre2">
-                              Tài liệu giấy
-                          </label>
-                      </div>
-                  </div>
-  
-                  <div class="col-md-5">
-                        <div class="mb-3 form-group" id="fileInput_dien_tu" style="display:none;">
-                            <label class="form-label">Chọn file để đăng tải</label>
-                            <input type="file" name="file_dien_tu" class="form-control-file">
-                        </div>
-        
-                        <div class="mb-3 form-group" id="fileInput_giay" style="display:none;">
-                            <label class="form-label">Chọn hình xem trước</label>
-                            <input type="file" name="file_giay" class="form-control-file" accept="image/*" multiple>
-                        </div>
-  
-                  <button type="submit" class="btn btn-primary">Tải lên</button>
-              </div>
-          </div>
-      </form>
-      <script>
-            $(document).ready(function() {
-                $('input[name="document_genre"]').change(function() {
-                    if ($(this).val() === 'dien_tu') {
-                        $('#fileInput_dien_tu').show();
-                        $('#fileInput_giay').hide();
-                    } else if ($(this).val() === 'giay') {
-                        $('#fileInput_dien_tu').hide();
-                        $('#fileInput_giay').show();
-                    } else {
-                        $('#fileInput_dien_tu').hide();
-                        $('#fileInput_giay').hide();
-                    }
-                });
-            });
-        </script>
-  </div>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="row justify-content-center ">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="document_name" class="form-label">Tiêu đề</label>
+                    <input type="text" class="form-control" id="document_name" name="document_name" placeholder='' required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="document_describe" class="form-label">Mô tả tài liệu</label>
+                    <textarea class="form-control" id="document_describe" name="document_describe" rows="3"></textarea>
+                </div>
+
+                <label for="document_type">Loại tài liệu</label>
+                <select class="form-select" aria-label="type-select" id="document_type" name="document_type">
+                    <option selected>Chọn loại tài liệu</option>
+                    <option value="Slide">Slide</option>
+                    <option value="Ebook">Ebook</option>
+                    <option value="Đề thi cũ">Đề thi cũ</option>
+                    <option value="Khác">Khác</option>
+                </select>        
+            </div>
+
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="document_subject" class="form-label">Môn học</label>
+                    <input type="text" class="form-control" id="document_subject" name="document_subject" placeholder='' required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="document_school" class="form-label">Trường</label>
+                    <input type="text" class="form-control" id="document_school" name="document_school" placeholder='' required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="document_year" class="form-label">Năm học</label>
+                    <input type="text" class="form-control" id="document_year" name="document_year" placeholder='' required>
+                </div>
+
+                <div class="mb-3 form-group" id="fileInput_dien_tu">
+                    <label class="form-label">Chọn file để đăng tải</label>
+                    <input type="file" name="file_dien_tu" class="form-control-file">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Tải lên</button>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}
