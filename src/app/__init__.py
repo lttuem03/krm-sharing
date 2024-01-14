@@ -8,10 +8,14 @@ from app.views import (HomeView,
                        LoginView,
                        LogoutView,
                        RegisterView,
-                       UploadView)
+                       UploadView,
+                       DocumentManagementView,
+                       DocumentDetailsView)
 
 from app.models import db
-#from models.model_user import User
+
+from app.controllers.utils import get_uploader, kilobyte_to_megabyte
+
 from .config import *
 
 krm_app_instance = Flask(__name__, template_folder=".\\views\\templates",
@@ -34,7 +38,13 @@ krm_app_instance.add_url_rule("/login/", endpoint="login", view_func=LoginView.a
 krm_app_instance.add_url_rule("/logout/", endpoint="logout", view_func=LogoutView.as_view("logout"))
 krm_app_instance.add_url_rule("/register/", endpoint="register", view_func=RegisterView.as_view("register"))
 krm_app_instance.add_url_rule("/upload/", endpoint="upload", view_func=UploadView.as_view("upload"))
+krm_app_instance.add_url_rule("/document/<int:id>", endpoint="document_details", view_func=DocumentDetailsView.as_view("document_details"))
+krm_app_instance.add_url_rule("/managedocuments/", endpoint="document_management", view_func=DocumentManagementView.as_view("document_management"))
 
 # Setting up flask-login
 login_manager.login_view = "login"
 login_manager.init_app(krm_app_instance)
+
+# Registering utility function to use in the html templates
+krm_app_instance.jinja_env.globals.update(get_uploader=get_uploader)
+krm_app_instance.jinja_env.globals.update(kilobyte_to_megabyte=kilobyte_to_megabyte)

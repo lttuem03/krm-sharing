@@ -1,3 +1,6 @@
+# ignore document thumbnail folder
+src/static/images/document_thumbnails/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

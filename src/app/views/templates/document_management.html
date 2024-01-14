@@ -6,7 +6,14 @@
     <h1>Đăng tải bởi tôi</h1>
     <ul>
         {% for document in uploaded %}
-            <li> <a href="{{ url_for('views.document', id=document.id) }}">{{document.name}}</a></li>
+            <li> <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h1>Tài liệu đã đánh dấu (Bookmark)</h1>
+    <ul>
+        {% for document in bookmarked %}
+            
         {% endfor %}
     </ul>
 {% endblock %}

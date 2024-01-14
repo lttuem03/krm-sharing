@@ -3,7 +3,92 @@
 {% block title %} {{document.name}} {% endblock %}
 
 {% block content %}
-    <h1>Tên tài liệu: {{document.name}}</h1>
-    <h2>Người đăng tải: {{get_uploader(document).name}}</h2>
-    <h2>Ngày đăng tải: {{document.date_uploaded.date()}}</h2>
+    <h2>Tên tài liệu: {{document.name}}</h2>
+    <h3>Người đăng tải: {{get_uploader(document).name}}</h3>
+    <h3>Ngày đăng tải: {{document.date_uploaded.date()}}</h3>
+    <h3>Loại tài liệu: {{document.type}}</h3>
+    <h3>Môn học/Chủ đề: {{document.subject}}</h3>
+    {%if document.description != None %}
+        <h3>Mô tả: {{document.description}}</h3>
+    {%else%}
+        <h3>Mô tả: (mô tả trống)</h3>
+    {%endif%}
+
+    {%if document.author != None %}
+        <h3>Tác giả: {{document.author}}</h3>
+    {%else%}
+        <h3>Tác giả: (không xác định)</h3>
+    {%endif%}
+    
+    {%if document.school != None %}
+        <h3>Trường: {{document.school}}</h3>
+    {%else%}
+        <h3>Trường: (không xác định)</h3>
+    {%endif%}
+    
+    {%if document.year != None %}
+        <h3>Năm soạn thảo/Xuất bản: {{document.year}}</h3>
+    {%else%}
+        <h3>Năm soạn thảo/Xuất bản: (không xác định)</h3>
+    {%endif%}
+    
+    {%if document.file_size < 1024 %}
+        <h3>Kích cỡ tệp tin: {{document.file_size}} KB</h3>
+    {%else%}
+        <h3>Kích cỡ tệp tin: {{kilobyte_to_megabyte(document.file_size)}} MB</h3>
+    {%endif%}
+    
+    <h3> Lượt xem: {{document.view_count}}</h3>
+    <h3 style="display: inline;">
+        Lượt tải:
+    </h3>
+
+    
+
+    <h3 id="download-count" style="display: inline;">{{document.download_count}}</h3>
+    <h3>Đánh giá: {{document.rating}}</h3>
+    <h3>Số lượt đánh giá: {{document.rating_count}}</h3>
+    
+    <form method="POST" enctype="multipart/form-data">
+
+        <button id="download-btn" 
+                name="download" 
+                type="submit" 
+                class="btn btn-primary"
+                onclick="update_downloadcount()">Tải xuống</button>
+
+        {%if  %}
+            <button id="bookmark-btn" name="bookmark" type="submit" class="btn btn-primary" onclick="change_bookmark_state()" style="color: white;">Đánh dấu</button>
+        {%else%}
+            <button id="bookmark-btn" name="bookmark" type="submit" class="btn btn-primary" onclick="change_bookmark_state()" style="color: yellow;">Đã đánh dấu</button>
+        {%endif%}
+    </form>
+
+    <script>
+        function update_downloadcount()
+        {
+            //alert("Button clicked")
+            let current = parseInt(document.getElementById("download-count").innerHTML);
+            console.log(current);
+            document.getElementById("download-count").innerHTML = String(current + 1);
+            console.log(current);
+        }
+
+        function change_bookmark_state()
+        {
+            let current_state = document.getElementById("bookmark-btn").innerHTML;
+            
+            if (current_state == "Đánh dấu")
+            {
+                document.getElementById("bookmark-btn").innerHTML = "Đã đánh dấu";
+                document.getElementById("bookmark-btn").style.color = "yellow";
+            }
+            else if (current_state == "Đã đánh dấu")
+            {
+                document.getElementById("bookmark-btn").innerHTML = "Đánh dấu";
+                document.getElementById("bookmark-btn").style.color = "white";
+            }
+        }
+    </script>
+    
 {% endblock %}

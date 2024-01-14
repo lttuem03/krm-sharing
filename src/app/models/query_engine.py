@@ -16,7 +16,10 @@ Document_column_map = { "id": Document.id,
                         "type": Document.type,
                         "subject": Document.subject,
                         "school": Document.school,
+                        "author": Document.author,
                         "year": Document.year,
+                        "description": Document.description,
+                        "filename": Document.filename,
                         "file_size": Document.file_size,
                         "view_count": Document.view_count,
                         "download_count": Document.download_count,
@@ -59,3 +62,11 @@ class QueryEngine():
             return None
         
         return Document.query.filter(Document_column_map[column] == value)
+    
+    @staticmethod
+    def query_Bookmarking_Table(column, value) -> Query:
+        if column == "user_id":
+            return None
+        
+        if column == "document_id":
+            return None

@@ -13,48 +13,58 @@
     <form method="POST" enctype="multipart/form-data">
         <div class="row justify-content-center ">
             <div class="col-md-4">
+                <div class="mb-3 form-group" id="fileInput_dien_tu">
+                    <label class="form-label">Chọn file để đăng tải (Tối đa 32 MB)</label>
+                    <input type="file" name="file" class="form-control-file" style="display: block;">
+                </div>
+
                 <div class="mb-3">
                     <label for="document_name" class="form-label">Tiêu đề</label>
                     <input type="text" class="form-control" id="document_name" name="document_name" placeholder='' required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="document_describe" class="form-label">Mô tả tài liệu</label>
-                    <textarea class="form-control" id="document_describe" name="document_describe" rows="3"></textarea>
+                    <label for="document_description" class="form-label">Mô tả tài liệu (Tối đa 200 kí tự)</label>
+                    <textarea class="form-control" id="document_description" name="document_description" rows="5"></textarea>
                 </div>
 
                 <label for="document_type">Loại tài liệu</label>
                 <select class="form-select" aria-label="type-select" id="document_type" name="document_type">
                     <option selected>Chọn loại tài liệu</option>
-                    <option value="Slide">Slide</option>
-                    <option value="Ebook">Ebook</option>
-                    <option value="Đề thi cũ">Đề thi cũ</option>
+                    <option value="Slide bài giảng">Slide bài giảng</option>
+                    <option value="Lý thuyết">Lý thuyết</option>
+                    <option value="Bài tập">Bài tập</option>
+                    <option value="Thực hành">Thực hành</option>
+                    <option value="Đề thi">Đề thi</option>
                     <option value="Khác">Khác</option>
-                </select>        
+                </select>
+
             </div>
 
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label for="document_subject" class="form-label">Môn học</label>
+                    <label for="document_subject" class="form-label">Môn học/Chủ đề</label>
                     <input type="text" class="form-control" id="document_subject" name="document_subject" placeholder='' required>
                 </div>
+                <div class="mb-3">
+                    <label for="document_author" class="form-label">Người biên soạn/Tác giả</label>
+                    <input type="text" class="form-control" id="document_author" name="document_author" placeholder=''>
+                </div>
 
                 <div class="mb-3">
-                    <label for="document_school" class="form-label">Trường</label>
-                    <input type="text" class="form-control" id="document_school" name="document_school" placeholder='' required>
+                    <label for="document_school" class="form-label">Trường (Nếu có)</label>
+                    <input type="text" class="form-control" id="document_school" name="document_school" placeholder=''>
                 </div>
 
                 <div class="mb-3">
-                    <label for="document_year" class="form-label">Năm học</label>
-                    <input type="text" class="form-control" id="document_year" name="document_year" placeholder='' required>
+                    <label for="document_year" class="form-label">Năm học/Năm xuất bản (Nếu có)</label>
+                    <input type="text" class="form-control" id="document_year" name="document_year" placeholder=''>
                 </div>
 
-                <div class="mb-3 form-group" id="fileInput_dien_tu">
-                    <label class="form-label">Chọn file để đăng tải</label>
-                    <input type="file" name="file_dien_tu" class="form-control-file">
+                
+                <div style="display: grid; place-items: center;">
+                    <button type="submit" class="btn btn-primary">Đăng tải</button>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Tải lên</button>
             </div>
         </div>
     </form>
