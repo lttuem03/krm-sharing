@@ -8,13 +8,3 @@ class HomeView(View):
 
     def dispatch_request(self):
         return render_template("home.html", user=current_user)
-    
-# old one
-# @views.route('/', methods=['GET', 'POST'])
-# def index():
-#     search = request.form.get('search')
-# 
-#     if search != "":
-#         print(search)
-# 
-#     return render_template('index.html', user=current_user)

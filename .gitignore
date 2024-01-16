@@ -1,6 +1,9 @@
 # ignore document thumbnail folder
 src/static/images/document_thumbnails/
 
+# ignore user avatars folder
+src/static/images/user_avatars/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

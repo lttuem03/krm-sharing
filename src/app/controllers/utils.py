@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 from app.models.query_engine import QueryEngine
 from app.models.model_document import Document
 
-from ..config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER, DOCUMENT_THUMBNAIL_FOLDER
+from ..config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER, DOCUMENT_THUMBNAIL_FOLDER, USER_AVATAR_FOLDER
 
 def check_email_availability(email, msg="Email này đã được sử dụng, vui lòng chọn email khác"):
     user_by_email = QueryEngine.query_User_by("email", email)
@@ -196,3 +196,11 @@ def get_num_uploaded(user_id):
 
 def round_float(value, num_places_after_decimal_point):
     return round(value, num_places_after_decimal_point)
+
+def get_current_avatar_path(user_id):
+    avatar_filename = "[user-{id:0>5}]_avatar.jpg".format(id=str(user_id)) # format "[user-00001]_avatar.jpg"
+    
+    if os.path.exists(os.path.join(os.path.dirname(__file__), USER_AVATAR_FOLDER, avatar_filename)):
+        return "/static/images/user_avatars/{}".format(avatar_filename)
+    
+    return "/static/images/defaut_user.jpg"

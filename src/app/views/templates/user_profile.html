@@ -18,14 +18,16 @@
     <div class="card-body">
         <ul>
             <div>
-               <img src="/static/images/defaut_user.jpg" height="100px"></img>
+               <img src="{{get_current_avatar_path(user.id)}}" height="100px"></img>
               {{user.name}}
             </div>
         </ul>
           <div>
-              <button type="button" class="btn btn-outline-dark" href="#">Đổi ảnh đại diện</button>
-              <button type="button" class="btn btn-outline-dark" href="#">Đổi tên hiển thị</button>
-              <button type="button" class="btn btn-outline-dark" href="#">Đổi mật khẩu</button>
+            <form method="POST" enctype="multipart/form-data">
+                <button type="submit" name="change_avatar_request" class="btn btn-outline-dark">Đổi ảnh đại diện</button>
+                <button type="submit" name="change_name_request" class="btn btn-outline-dark">Đổi tên hiển thị</button>
+                <button type="submit" name="change_password_request" class="btn btn-outline-dark">Đổi mật khẩu</button>
+            </form>
           </div>
         
         <ul>

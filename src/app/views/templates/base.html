@@ -52,7 +52,7 @@
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <span>
-                                <img src="/static/images/defaut_user.jpg" height="30px"></img>
+                                <img src="{{ get_current_avatar_path(user.id) }}" height="30px"></img>
                             </span>
                             {{ user.name.split()[-1]}}
                         </button>

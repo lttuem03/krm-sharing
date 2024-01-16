@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Đổi ảnh đại diện {% endblock %}
+{% block content %}
+    <div>
+        <p>Ảnh hiện tại</p>
+        <img src="{{ get_current_avatar_path(user.id) }}" width="300px" height="300px"></img>
+    </div>
+    
+    <div>
+        <p>Tải lên ảnh đại diện mới</p> 
+        <form method="POST" enctype="multipart/form-data">
+            <label class="form-label">Chọn file ảnh đại diện mới (*.jpg, *.jpeg, *.png)</label>
+            <input type="file" name="file" class="form-control-file" style="display: block;">
+
+            <button id="change-avatar-btn" 
+                    name="change_avatar_request" 
+                    type="submit" 
+                    class="btn btn-primary">Lưu ảnh đại diện</button>
+        </form>
+    </div>
+{% endblock %}

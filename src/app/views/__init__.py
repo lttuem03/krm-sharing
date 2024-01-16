@@ -3,4 +3,4 @@ from .view_home import HomeView
 from .view_authentication import LoginView, LogoutView, RegisterView
 from .view_document_management import UploadView, DocumentManagementView
 from .view_document_details import DocumentDetailsView
-from .view_user_profile import MyProfileView, UserProfileView
+from .view_user_profile import MyProfileView, UserProfileView, ChangeAvatarView
