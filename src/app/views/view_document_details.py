@@ -18,14 +18,19 @@ class DocumentDetailsView(MethodView):
         if document != None:
             DocumentDetailsController.update_viewcount(document)
             return render_template("document_details.html", user=current_user, document=document)
-        else:
-            return render_template("document_not_exists.html", user=current_user)
+        
+        return render_template("document_not_exists.html", user=current_user)
     
     def post(self, id):
-        #if request.form
         document = DocumentDetailsController.get_document(id)
 
-        if document != None:
+        if document == None:
+            return render_template("document_not_exists.html", user=current_user)
+        
+        if "download_request" in request.form:
             DocumentDetailsController.update_downloadcount(document)
-
-        return send_from_directory(UPLOAD_FOLDER, document.filename, as_attachment=True)
+            return send_from_directory(UPLOAD_FOLDER, document.filename, as_attachment=True)
+        
+        elif "bookmark_request" in request.form:
+            DocumentDetailsController.change_bookmark_state(document)
+            return render_template("document_details.html", user=current_user, document=document)

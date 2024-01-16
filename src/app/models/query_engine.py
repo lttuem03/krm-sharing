@@ -2,6 +2,7 @@ from flask_sqlalchemy.query import Query
 
 from app.models.model_user import User
 from app.models.model_document import Document
+from app.models.table_bookmarking import BookmarkingTable
 
 User_column_map = { "id": User.id,
                     "name": User.name,
@@ -64,9 +65,10 @@ class QueryEngine():
         return Document.query.filter(Document_column_map[column] == value)
     
     @staticmethod
-    def query_Bookmarking_Table(column, value) -> Query:
-        if column == "user_id":
-            return None
-        
-        if column == "document_id":
-            return None
+    def query_Bookmarking_Table(user_id_value, document_id_value):
+        return BookmarkingTable.query.filter(BookmarkingTable.user_id == user_id_value,
+                                             BookmarkingTable.document_id == document_id_value).first()
+    
+    @staticmethod
+    def query_Bookmarking_Table_filter_by_user_id(user_id_value):
+        return BookmarkingTable.query.filter(BookmarkingTable.user_id == user_id_value)

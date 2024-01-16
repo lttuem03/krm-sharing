@@ -14,7 +14,7 @@ from app.views import (HomeView,
 
 from app.models import db
 
-from app.controllers.utils import get_uploader, kilobyte_to_megabyte
+from app.controllers.utils import get_uploader, kilobyte_to_megabyte, is_bookmarked_by_current_user
 
 from .config import *
 
@@ -48,3 +48,4 @@ login_manager.init_app(krm_app_instance)
 # Registering utility function to use in the html templates
 krm_app_instance.jinja_env.globals.update(get_uploader=get_uploader)
 krm_app_instance.jinja_env.globals.update(kilobyte_to_megabyte=kilobyte_to_megabyte)
+krm_app_instance.jinja_env.globals.update(is_bookmarked_by_current_user=is_bookmarked_by_current_user)

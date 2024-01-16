@@ -13,7 +13,7 @@
     <h1>Tài liệu đã đánh dấu (Bookmark)</h1>
     <ul>
         {% for document in bookmarked %}
-            
+            <li> <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

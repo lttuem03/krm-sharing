@@ -43,8 +43,6 @@
         Lượt tải:
     </h3>
 
-    
-
     <h3 id="download-count" style="display: inline;">{{document.download_count}}</h3>
     <h3>Đánh giá: {{document.rating}}</h3>
     <h3>Số lượt đánh giá: {{document.rating_count}}</h3>
@@ -52,15 +50,25 @@
     <form method="POST" enctype="multipart/form-data">
 
         <button id="download-btn" 
-                name="download" 
+                name="download_request" 
                 type="submit" 
                 class="btn btn-primary"
                 onclick="update_downloadcount()">Tải xuống</button>
 
-        {%if  %}
-            <button id="bookmark-btn" name="bookmark" type="submit" class="btn btn-primary" onclick="change_bookmark_state()" style="color: white;">Đánh dấu</button>
+        {%if is_bookmarked_by_current_user(document.id) == False %}
+            <button id="bookmark-btn" 
+                    name="bookmark_request" 
+                    type="submit" 
+                    class="btn btn-primary" 
+                    onclick="change_bookmark_state()" 
+                    style="color: white;">Đánh dấu</button>
         {%else%}
-            <button id="bookmark-btn" name="bookmark" type="submit" class="btn btn-primary" onclick="change_bookmark_state()" style="color: yellow;">Đã đánh dấu</button>
+            <button id="bookmark-btn" 
+                    name="bookmark_request" 
+                    type="submit" 
+                    class="btn btn-primary" 
+                    onclick="change_bookmark_state()" 
+                    style="color: yellow;">Đã đánh dấu</button>
         {%endif%}
     </form>
 

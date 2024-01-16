@@ -4,6 +4,8 @@ import re
 import fitz # PyMuPDF for saving pdf thumbnails
 
 from flask import flash
+from flask_login import current_user
+
 from docx2pdf import convert
 from comtypes import client # used for converting pptx to pdfs
 from PIL import Image, ImageDraw, ImageFont
@@ -175,4 +177,9 @@ def get_uploader(document: Document):
     return uploader
 
 def is_bookmarked_by_current_user(document_id):
-    return False
+    query = QueryEngine.query_Bookmarking_Table(current_user.id, document_id)
+    
+    if query == None:
+        return False
+    
+    return True

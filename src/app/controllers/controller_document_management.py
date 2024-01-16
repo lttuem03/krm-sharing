@@ -109,4 +109,13 @@ class DocumentManagementController():
         return QueryEngine.query_Documents_by("uploader_id", user_id)
 
     def get_bookmarked(user_id):
-        return []
+        bookmark_entrys = QueryEngine.query_Bookmarking_Table_filter_by_user_id(user_id)
+
+        bookmarked = []
+        for entry in bookmark_entrys:
+            query_document = QueryEngine.query_Document_by("id", entry.document_id)
+
+            if query_document != None:
+                bookmarked.append(query_document)
+
+        return bookmarked
