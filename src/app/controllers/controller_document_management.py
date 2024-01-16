@@ -105,9 +105,11 @@ class DocumentManagementController():
         flash("Tải tài liệu lên thất bại. Đã có lỗi xảy ra.", category="error")
         return None
     
+    @staticmethod
     def get_uploaded(user_id):
         return QueryEngine.query_Documents_by("uploader_id", user_id)
 
+    @staticmethod
     def get_bookmarked(user_id):
         bookmark_entrys = QueryEngine.query_Bookmarking_Table_filter_by_user_id(user_id)
 

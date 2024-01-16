@@ -76,7 +76,7 @@ def create_and_save_thumbmail(filename: str):
         document = fitz.open(os.path.join(UPLOAD_FOLDER, filename))
         thumbnail = document[0].get_pixmap()
 
-        thumbnail_filename = filename[:11] + "-thumbnail].jpg" # format: [krm-00003-thumbnail].jpg
+        thumbnail_filename = filename[:11] + "_thumbnail.jpg" # format: [krm-00003]_thumbnail.jpg
 
         thumbnail.save(os.path.join(os.path.dirname(__file__), DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
         document.close()
@@ -183,3 +183,8 @@ def is_bookmarked_by_current_user(document_id):
         return False
     
     return True
+
+def get_thumbnail_path(document_id):
+    thumbnail_filename = "[krm-{id:0>5}]_thumbnail.jpg".format(id=str(document_id))
+
+    return "images/document_thumbnails/{}".format(thumbnail_filename)

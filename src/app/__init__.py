@@ -14,7 +14,7 @@ from app.views import (HomeView,
 
 from app.models import db
 
-from app.controllers.utils import get_uploader, kilobyte_to_megabyte, is_bookmarked_by_current_user
+from app.controllers.utils import get_uploader, kilobyte_to_megabyte, is_bookmarked_by_current_user, get_thumbnail_path
 
 from .config import *
 
@@ -49,3 +49,4 @@ login_manager.init_app(krm_app_instance)
 krm_app_instance.jinja_env.globals.update(get_uploader=get_uploader)
 krm_app_instance.jinja_env.globals.update(kilobyte_to_megabyte=kilobyte_to_megabyte)
 krm_app_instance.jinja_env.globals.update(is_bookmarked_by_current_user=is_bookmarked_by_current_user)
+krm_app_instance.jinja_env.globals.update(get_thumbnail_path=get_thumbnail_path)

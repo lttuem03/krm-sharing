@@ -3,6 +3,7 @@
 {% block title %} {{document.name}} {% endblock %}
 
 {% block content %}
+    <img src="{{ url_for('static', filename=get_thumbnail_path(document.id)) }}" style="padding-left: 10px; border: 2px solid; border-color: black;"></img>
     <h2>Tên tài liệu: {{document.name}}</h2>
     <h3>Người đăng tải: {{get_uploader(document).name}}</h3>
     <h3>Ngày đăng tải: {{document.date_uploaded.date()}}</h3>
