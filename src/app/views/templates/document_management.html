@@ -6,7 +6,12 @@
     <h1>Đăng tải bởi tôi</h1>
     <ul>
         {% for document in uploaded %}
-            <li> <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a></li>
+            <li> 
+                <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a>
+                <p style="display: inline;">Lượt xem: {{document.view_count}}</p>
+                <p style="display: inline;">Lượt tải: {{document.download_count}}</p>
+                <p style="display: inline;">Đánh giá: {{round_float(document.rating, 2)}} sao ({{document.rating_count}} lượt đánh giá) </p>
+            </li>
         {% endfor %}
     </ul>
 

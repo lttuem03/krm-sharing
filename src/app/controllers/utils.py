@@ -95,7 +95,7 @@ def create_and_save_thumbmail(filename: str):
         document = fitz.open(pdf_document_path)
         thumbnail = document[0].get_pixmap()
 
-        thumbnail_filename = filename[:11] + "-thumbnail].jpg" # format: [krm-00003-thumbnail].jpg
+        thumbnail_filename = filename[:11] + "_thumbnail.jpg" # format: [krm-00003]_thumbnail.jpg
 
         thumbnail.save(os.path.join(os.path.dirname(__file__), DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
 
@@ -127,7 +127,7 @@ def create_and_save_thumbmail(filename: str):
         document = fitz.open(pdf_document_path)
         thumbnail = document[0].get_pixmap()
 
-        thumbnail_filename = filename[:11] + "-thumbnail].jpg" # format: [krm-00003-thumbnail].jpg
+        thumbnail_filename = filename[:11] + "_thumbnail.jpg" # format: [krm-00003]_thumbnail.jpg
 
         thumbnail.save(os.path.join(os.path.dirname(__file__), DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
 
@@ -147,7 +147,7 @@ def create_and_save_thumbmail(filename: str):
         font = ImageFont.truetype(os.path.join(os.path.dirname(__file__), "..\\..\\static\\font", "consola.ttf"), 24, encoding='unic')
 
         # getting save path
-        thumbnail_filename = filename[:11] + "-thumbnail].jpg" # format: [krm-00003-thumbnail].jpg
+        thumbnail_filename = filename[:11] + "_thumbnail.jpg" # format: [krm-00003]_thumbnail.jpg
 
         # read and write on the thumbnail the contents of the file
         with open(os.path.join(UPLOAD_FOLDER, filename), 'r') as txt_file:
@@ -188,3 +188,11 @@ def get_thumbnail_path(document_id):
     thumbnail_filename = "[krm-{id:0>5}]_thumbnail.jpg".format(id=str(document_id))
 
     return "images/document_thumbnails/{}".format(thumbnail_filename)
+
+def get_num_uploaded(user_id):
+    num_uploaded = QueryEngine.query_Documents_by("uploader_id", user_id).count()
+
+    return num_uploaded
+
+def round_float(value, num_places_after_decimal_point):
+    return round(value, num_places_after_decimal_point)

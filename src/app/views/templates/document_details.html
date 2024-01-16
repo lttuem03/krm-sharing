@@ -45,17 +45,18 @@
     </h3>
 
     <h3 id="download-count" style="display: inline;">{{document.download_count}}</h3>
-    <h3>Đánh giá: {{document.rating}}</h3>
+    <h3>Đánh giá: {{round_float(document.rating, 2)}}</h3>
     <h3>Số lượt đánh giá: {{document.rating_count}}</h3>
     
     <form method="POST" enctype="multipart/form-data">
-
+        <!--Downloading section-->
         <button id="download-btn" 
                 name="download_request" 
                 type="submit" 
                 class="btn btn-primary"
                 onclick="update_downloadcount()">Tải xuống</button>
 
+        <!--Bookmarking section-->
         {%if is_bookmarked_by_current_user(document.id) == False %}
             <button id="bookmark-btn" 
                     name="bookmark_request" 
@@ -71,6 +72,23 @@
                     onclick="change_bookmark_state()" 
                     style="color: yellow;">Đã đánh dấu</button>
         {%endif%}
+
+        <!--Rating section-->
+        <!--Code refered from: https://codepen.io/hesguru/pen/BaybqXv-->
+        <div class="rate" style="display: inline;">
+            <input type="radio" id="star5" name="select_rating" value="5" />
+            <label for="star5" title="text">5 stars</label>
+            <input type="radio" id="star4" name="select_rating" value="4" />
+            <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star3" name="select_rating" value="3" />
+            <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star2" name="select_rating" value="2" />
+            <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star1" name="select_rating" value="1" />
+            <label for="star1" title="text">1 star</label>
+
+            <button id="rating-btn" name="rating_request" type="submit" class="btn btn-primary" style="display: block;">Đánh giá</button>
+        </div>
     </form>
 
     <script>

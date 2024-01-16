@@ -1,3 +1,4 @@
 from .controller_authentication import AuthenticationController
 from .controller_document_management import DocumentManagementController
 from .controller_document_details import DocumentDetailsController
+from .controller_user_profile import UserProfileController

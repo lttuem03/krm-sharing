@@ -8,13 +8,20 @@ from app.views import (HomeView,
                        LoginView,
                        LogoutView,
                        RegisterView,
+                       MyProfileView,
+                       UserProfileView,
                        UploadView,
                        DocumentManagementView,
                        DocumentDetailsView)
 
 from app.models import db
 
-from app.controllers.utils import get_uploader, kilobyte_to_megabyte, is_bookmarked_by_current_user, get_thumbnail_path
+from app.controllers.utils import (get_uploader,
+                                   kilobyte_to_megabyte,
+                                   is_bookmarked_by_current_user,
+                                   get_thumbnail_path,
+                                   get_num_uploaded,
+                                   round_float)
 
 from .config import *
 
@@ -37,6 +44,8 @@ krm_app_instance.add_url_rule("/", endpoint="home", view_func=HomeView.as_view("
 krm_app_instance.add_url_rule("/login/", endpoint="login", view_func=LoginView.as_view("login"))
 krm_app_instance.add_url_rule("/logout/", endpoint="logout", view_func=LogoutView.as_view("logout"))
 krm_app_instance.add_url_rule("/register/", endpoint="register", view_func=RegisterView.as_view("register"))
+krm_app_instance.add_url_rule("/profile/me", endpoint="my_profile", view_func=MyProfileView.as_view("my_profile"))
+krm_app_instance.add_url_rule("/profile/<int:id>", endpoint="user_profile", view_func=UserProfileView.as_view("user_profile"))
 krm_app_instance.add_url_rule("/upload/", endpoint="upload", view_func=UploadView.as_view("upload"))
 krm_app_instance.add_url_rule("/document/<int:id>", endpoint="document_details", view_func=DocumentDetailsView.as_view("document_details"))
 krm_app_instance.add_url_rule("/managedocuments/", endpoint="document_management", view_func=DocumentManagementView.as_view("document_management"))
@@ -50,3 +59,5 @@ krm_app_instance.jinja_env.globals.update(get_uploader=get_uploader)
 krm_app_instance.jinja_env.globals.update(kilobyte_to_megabyte=kilobyte_to_megabyte)
 krm_app_instance.jinja_env.globals.update(is_bookmarked_by_current_user=is_bookmarked_by_current_user)
 krm_app_instance.jinja_env.globals.update(get_thumbnail_path=get_thumbnail_path)
+krm_app_instance.jinja_env.globals.update(get_num_uploaded=get_num_uploaded)
+krm_app_instance.jinja_env.globals.update(round_float=round_float)

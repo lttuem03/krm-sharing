@@ -1,0 +1,54 @@
+{% extends "base.html" %} 
+{% block title %} Hồ sơ của tôi {% endblock %} 
+{% block content %}
+
+<style>
+  .centered-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 50vw;
+    padding-top: 25vh;
+    padding-left: 25%;
+  }
+</style>
+
+<div class="card centered-frame">
+    <div class="card-body">
+        <ul>
+            <div>
+               <img src="/static/images/defaut_user.jpg" height="100px"></img>
+              {{user.name}}
+            </div>
+        </ul>
+          <div>
+              <button type="button" class="btn btn-outline-dark" href="#">Đổi ảnh đại diện</button>
+              <button type="button" class="btn btn-outline-dark" href="#">Đổi tên hiển thị</button>
+              <button type="button" class="btn btn-outline-dark" href="#">Đổi mật khẩu</button>
+          </div>
+        
+        <ul>
+            <div class="card" style="width: 50rem">
+              <ul class="list-group list-group-flush">
+                
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div>Số tài liệu đã đăng tải</div>
+                  <div>{{get_num_uploaded(user.id)}}</div>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div>Email</div>
+                  <div>{{user.email}}</div>
+                </li>
+
+              </ul>
+            </div>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

@@ -33,22 +33,6 @@
 #    return render_template('create_listing.html')
 #
 #
-#@views.route('/mydocument/')
-#@login_required
-#def mydocument():
-#
-#    uploaded_documents = Document.query.filter_by(uploader_id=current_user.id).all()
-#
-#    return render_template('my_document.html', user=current_user, uploaded=uploaded_documents)
-#
-#
-#@views.route('/document/<id>')
-#def document(id):
-#    doc_query_result = Document.query.filter_by(id=id).first()
-#
-#    return render_template('document.html', user=current_user, document=doc_query_result)
-#
-#
 #@views.route('/profile/')
 #@login_required
 #def profile():
