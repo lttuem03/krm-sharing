@@ -25,7 +25,6 @@
           <div>
             <form method="POST" enctype="multipart/form-data">
                 <button type="submit" name="change_avatar_request" class="btn btn-outline-dark">Đổi ảnh đại diện</button>
-                <button type="submit" name="change_name_request" class="btn btn-outline-dark">Đổi tên hiển thị</button>
                 <button type="submit" name="change_password_request" class="btn btn-outline-dark">Đổi mật khẩu</button>
             </form>
           </div>
@@ -34,17 +33,29 @@
             <div class="card" style="width: 50rem">
               <ul class="list-group list-group-flush">
                 
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>Email</div>
+                  <div>{{user.email}}</div>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
                   <div>Số tài liệu đã đăng tải</div>
                   <div>{{get_num_uploaded(user.id)}}</div>
                 </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  <div>Email</div>
-                  <div>{{user.email}}</div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>Tổng số lượt xem</div>
+                  <div>{{get_total_views(user.id)}}</div>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>Tổng số lượt tải</div>
+                  <div>{{get_total_downloaded(user.id)}}</div>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>Đánh giá trung bình</div>
+                  <div>{{get_average_rating(user.id)}}/5.00</div>
                 </li>
 
               </ul>

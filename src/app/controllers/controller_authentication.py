@@ -41,7 +41,7 @@ class AuthenticationController():
             flash("Tên đăng nhập hoặc email không tồn tại", category="error")
             return None
     
-        if check_password_hash(user.hased_password, password) == False:
+        if check_password_hash(user.hashed_password, password) == False:
             flash("Sai mật khẩu", category="error")
             return None
             
@@ -71,7 +71,7 @@ class AuthenticationController():
         
         if all_checks_pass:
             new_user = User(name=name, email=email, username=username,
-                            hased_password=generate_password_hash(password, method='pbkdf2'))
+                            hashed_password=generate_password_hash(password, method='pbkdf2'))
             db.session.add(new_user)
             db.session.commit()
 

@@ -194,6 +194,41 @@ def get_num_uploaded(user_id):
 
     return num_uploaded
 
+def get_total_views(user_id):
+    uploaded = QueryEngine.query_Documents_by("uploader_id", user_id)
+
+    total_views = 0
+
+    for document in uploaded:
+        total_views += document.view_count
+
+    return total_views
+
+def get_total_downloaded(user_id):
+    uploaded = QueryEngine.query_Documents_by("uploader_id", user_id)
+
+    total_downloaded = 0
+
+    for document in uploaded:
+        total_downloaded += document.download_count
+
+    return total_downloaded
+
+def get_average_rating(user_id):
+    uploaded = QueryEngine.query_Documents_by("uploader_id", user_id)
+
+    sum_rating = 0
+    total_rating_count = 0
+
+    for document in uploaded:
+        sum_rating += document.rating * document.rating_count
+        total_rating_count += document.rating_count
+
+    if total_rating_count != 0:
+        return round(sum_rating / total_rating_count, 2)
+
+    return 0
+
 def round_float(value, num_places_after_decimal_point):
     return round(value, num_places_after_decimal_point)
 

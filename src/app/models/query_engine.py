@@ -9,7 +9,7 @@ User_column_map = {"id": User.id,
                    "name": User.name,
                    "email": User.email,
                    "username": User.username,
-                   "hased_password": User.hased_password}
+                   "hashed_password": User.hashed_password}
 
 Document_column_map = {"id": Document.id,
                        "name": Document.name,

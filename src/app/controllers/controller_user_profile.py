@@ -6,7 +6,10 @@ from flask import (request,
 from flask_login import current_user
 
 from werkzeug.utils import secure_filename
+from werkzeug.security import (check_password_hash,
+                               generate_password_hash)
 
+from app.models import db
 from app.models.model_user import User
 from app.models.query_engine import QueryEngine
 
@@ -21,6 +24,11 @@ class UserProfileController():
     
     @staticmethod
     def process_change_avatar():
+        """
+        Process an attempt to change user's avatar
+
+        Return True if succeed, otherwise return False
+        """
         if "file" not in request.files:
             flash("No file part in request")
             return False
@@ -46,3 +54,25 @@ class UserProfileController():
 
             flash("Đổi ảnh đại diện thành công", category="success")
             return True
+        
+    @staticmethod
+    def process_change_password(current_password, new_password, confirm_new_password):
+        """
+        Process an attempt to change user's password
+
+        Return True if succeed, otherwise return False
+        """
+        user = QueryEngine.query_User_by("email", current_user.email)
+
+        if check_password_hash(user.hashed_password, current_password) == False:
+            flash("Sai mật khẩu", category="error")
+            return False
+        
+        if new_password != confirm_new_password:
+            flash("Mật khẩu nhập lại không khớp", category="error")
+            return False
+        
+        # success
+        user.hashed_password = generate_password_hash(new_password, method='pbkdf2')
+        db.session.commit()
+        return True

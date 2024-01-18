@@ -11,6 +11,7 @@ from app.views import (HomeView,
                        MyProfileView,
                        UserProfileView,
                        ChangeAvatarView,
+                       ChangePasswordView,
                        UploadView,
                        DocumentManagementView,
                        DocumentDetailsView)
@@ -22,6 +23,9 @@ from app.controllers.utils import (get_uploader,
                                    is_bookmarked_by_current_user,
                                    get_thumbnail_path,
                                    get_num_uploaded,
+                                   get_total_views,
+                                   get_total_downloaded,
+                                   get_average_rating,
                                    round_float,
                                    get_current_avatar_path)
 
@@ -49,6 +53,7 @@ krm_app_instance.add_url_rule("/register/", endpoint="register", view_func=Regis
 krm_app_instance.add_url_rule("/profile/me", endpoint="my_profile", view_func=MyProfileView.as_view("my_profile"))
 krm_app_instance.add_url_rule("/profile/<int:id>", endpoint="user_profile", view_func=UserProfileView.as_view("user_profile"))
 krm_app_instance.add_url_rule("/profile/change_avatar", endpoint="change_avatar", view_func=ChangeAvatarView.as_view("change_avatar"))
+krm_app_instance.add_url_rule("/profile/change_password", endpoint="change_password", view_func=ChangePasswordView.as_view("change_password"))
 
 krm_app_instance.add_url_rule("/upload/", endpoint="upload", view_func=UploadView.as_view("upload"))
 krm_app_instance.add_url_rule("/document/<int:id>", endpoint="document_details", view_func=DocumentDetailsView.as_view("document_details"))
@@ -64,5 +69,8 @@ krm_app_instance.jinja_env.globals.update(kilobyte_to_megabyte=kilobyte_to_megab
 krm_app_instance.jinja_env.globals.update(is_bookmarked_by_current_user=is_bookmarked_by_current_user)
 krm_app_instance.jinja_env.globals.update(get_thumbnail_path=get_thumbnail_path)
 krm_app_instance.jinja_env.globals.update(get_num_uploaded=get_num_uploaded)
+krm_app_instance.jinja_env.globals.update(get_total_views=get_total_views)
+krm_app_instance.jinja_env.globals.update(get_total_downloaded=get_total_downloaded)
+krm_app_instance.jinja_env.globals.update(get_average_rating=get_average_rating)
 krm_app_instance.jinja_env.globals.update(round_float=round_float)
 krm_app_instance.jinja_env.globals.update(get_current_avatar_path=get_current_avatar_path)
