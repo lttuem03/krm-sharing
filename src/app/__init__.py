@@ -14,7 +14,8 @@ from app.views import (HomeView,
                        ChangePasswordView,
                        UploadView,
                        DocumentManagementView,
-                       DocumentDetailsView)
+                       DocumentDetailsView,
+                       LiveSearchProcessingView)
 
 from app.models import db
 
@@ -31,6 +32,7 @@ from app.controllers.utils import (get_uploader,
 
 from .config import *
 
+# Create app instance
 krm_app_instance = Flask(__name__, template_folder=".\\views\\templates",
                                     static_folder=".\\..\\static")
 
@@ -58,6 +60,8 @@ krm_app_instance.add_url_rule("/profile/change_password", endpoint="change_passw
 krm_app_instance.add_url_rule("/upload/", endpoint="upload", view_func=UploadView.as_view("upload"))
 krm_app_instance.add_url_rule("/document/<int:id>", endpoint="document_details", view_func=DocumentDetailsView.as_view("document_details"))
 krm_app_instance.add_url_rule("/manage_documents/", endpoint="document_management", view_func=DocumentManagementView.as_view("document_management"))
+
+krm_app_instance.add_url_rule("/livesearch", endpoint="livesearch", view_func=LiveSearchProcessingView.as_view("livesearch"))
 
 # Setting up flask-login
 login_manager.login_view = "login"

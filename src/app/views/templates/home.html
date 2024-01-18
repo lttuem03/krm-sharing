@@ -3,31 +3,84 @@
 {% block title %}krm-sharing: Nền tảng chia sẻ tài liệu{% endblock %}
 
 {% block style%}
-<link rel="stylesheet" href="{{url_for('static',filename='/css/index.css')}}"> {% endblock %}
+<link rel="stylesheet" href="{{url_for('static',filename='/css/index.css')}}"> 
+
+{% endblock %}
 
 {% block content %}
-<div class="bg-image shadow-2-strong"
-    style="background-image: url('/static/images/background.jpg'); background-size: cover; height: 100vh; width: 100vw; margin: 0;">
+
+
+<div class="bg-image shadow-2-strong" style="background-image: url('/static/images/background.jpg'); background-size: cover; height: 100vh; width: 100vw; margin: 0;">
     <div class="container d-flex align-items-center justify-content-center text-center h-100">
-        <form role="form" autocomplete="off" id="form-buscar" method="post" style="
-                        background-color: (1, 1, 1, 0.5); ">
+        
+        <form role="form" autocomplete="off" id="form-buscar" method="POST" style="background-color: (1, 1, 1, 0.5);">
             <div class="form-group">
+                
                 <div class="input-group">
-                    <input type="text" name="search_text" id="search_text" class="form-control" placeholder="Search fields e.g. Cairocoder">
-                    <input id="1" class="form-control" type="text" id="search_text" name="search_text"
-                        placeholder="Nhập tên tài liệu bạn cần tìm "/>
+                    <input class="form-control" 
+                           type="text" 
+                           id="search_text" 
+                           name="search_text" 
+                           onkeyup="liveSearch(this.value)"
+                           placeholder="Nhập tên tài liệu bạn cần tìm kiếm"/>
+
                     <span class="input-group-btn">
                         <button class="btn btn-success" type="submit">
                             <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Tìm kiếm
                         </button>
                     </span>   
                 </div>
-                <div id="search_result">
+                
+                <div id="search_suggestion">
 
                 </div>
             </div>
         </form>
     </div>
+
+    
 </div>
+
+<!-- live search functionality, courtesy to: https://youtu.be/hjAnhqR-XZk-->
+<input type="hidden" id="url_placeholder" value="{{ url_for('document_details', id=0)}}">
+
+<script>
+    function liveSearch(value)
+    {
+        value = value.trim();
+
+        if (value != "")
+        {
+            $.ajax({
+                url:"/livesearch",
+                data:{search_text: value},
+                dataType:"json",
+
+                success: function(data)
+                {
+                    var res = "";
+                    for (i in data.suggestions)
+                    {
+                        var separator_index = data.suggestions[i].indexOf('|')
+                        var filename = data.suggestions[i].slice(0, separator_index);
+                        var id = data.suggestions[i].slice(separator_index+1);
+                        
+                        var url_id = document.getElementById("url_placeholder").innerHTML
+                        url_id = url_id.slice(url_id.length - 1) + 'document/' + id;
+
+                        res += '<a href="' + url_id +'" id="suggestion_hyperlink" style="color: black; text-decoration: none;" onMouseOver="this.style.color=\'#808080\'" onMouseOut="this.style.color=\'#000000\'"> <div style="background-color: white; text-align: left; padding-left: 10px;">' + filename + '</div> </a>';
+                    }
+
+                    $("#search_suggestion").html(res);
+                }
+            });
+        }
+        else
+        {
+            $("#search_suggestion").html("");
+        } 
+    }
+
+</script>
 
 {% endblock %}

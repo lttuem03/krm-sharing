@@ -86,6 +86,10 @@ class QueryEngine():
         return Document.query.filter(Document_column_map[column] == value)
 
     @staticmethod
+    def query_all_Documents() -> Query:
+        return Document.query.all()
+
+    @staticmethod
     def query_Listing_by(column, value) -> Listing:
         """ Return row of the Listing query result """
         if column not in Listing_column_map:

@@ -3,6 +3,9 @@
     src: url('/font/NotoSans/NotoSans-ExtraBold.ttf');
 }
 
+#suggestion_hyperlink:hover{
+    background-color: blue;
+}
 
 #form-buscar>.form-group>.input-group>.form-control {
     height: 50px;
