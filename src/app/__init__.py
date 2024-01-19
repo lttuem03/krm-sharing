@@ -15,6 +15,7 @@ from app.views import (HomeView,
                        UploadView,
                        DocumentManagementView,
                        DocumentDetailsView,
+                       ListingView,
                        LiveSearchProcessingView)
 
 from app.models import db
@@ -70,6 +71,8 @@ krm_app_instance.add_url_rule("/profile/change_password", endpoint="change_passw
 krm_app_instance.add_url_rule("/upload/", endpoint="upload", view_func=UploadView.as_view("upload"))
 krm_app_instance.add_url_rule("/document/<int:id>", endpoint="document_details", view_func=DocumentDetailsView.as_view("document_details"))
 krm_app_instance.add_url_rule("/manage_documents/", endpoint="document_management", view_func=DocumentManagementView.as_view("document_management"))
+krm_app_instance.add_url_rule("/listing/", endpoint="create_listing", view_func=ListingView.as_view("create_listing"))
+
 
 krm_app_instance.add_url_rule("/livesearch", endpoint="livesearch", view_func=LiveSearchProcessingView.as_view("livesearch"))
 
