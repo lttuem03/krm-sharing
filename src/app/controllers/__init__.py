@@ -3,3 +3,4 @@ from .controller_document_management import DocumentManagementController
 from .controller_document_details import DocumentDetailsController
 from .controller_search import SearchController
 from .controller_user_profile import UserProfileController
+from .controller_listing_management import ListingManagementController

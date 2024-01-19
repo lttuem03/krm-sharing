@@ -13,17 +13,17 @@
       <div class="row justify-content-center ">
           <div class="col-md-4">
               <div class="mb-3">
-                  <label for="document_name" class="form-label">Tiêu đề</label>
-                  <input type="text" class="form-control" id="document_name" name="document_name" placeholder='' required>
+                  <label for="listing_name" class="form-label">Tiêu đề</label>
+                  <input type="text" class="form-control" id="listing_name" name="listing_name" placeholder='' required>
               </div>
 
               <div class="mb-3">
-                  <label for="document_description" class="form-label">Mô tả tài liệu (Tối đa 200 kí tự)</label>
-                  <textarea class="form-control" id="document_description" name="document_description" rows="5"></textarea>
+                  <label for="listing_description" class="form-label">Mô tả tài liệu (Tối đa 200 kí tự)</label>
+                  <textarea class="form-control" id="listing_description" name="listing_description" rows="5"></textarea>
               </div>
 
-              <label for="document_type">Tình trạng tài liệu</label>
-              <select class="form-select" aria-label="type-select" id="document_type" name="document_type">
+              <label for="listing_status">Tình trạng tài liệu</label>
+              <select class="form-select" aria-label="type-select" id="listing_type" name="listing_status">
                   <option selected>Chọn tình trạng của tài liệu</option>
                   <option value="Mới">Mới (100%)</option>
                   <option value="Khá mới">Khá mới (80%)</option>
@@ -32,94 +32,60 @@
                   <option value="Cũ">Cũ (40%)</option>
               </select>
               <div class="mb-3">
-                <label for="document_subject" class="form-label">Môn học/Chủ đề</label>
-                <input type="text" class="form-control" id="document_subject" name="document_subject" placeholder='' required>
+                <label for="listing_amount" class="form-label">Môn học/Chủ đề</label>
+                <input type="text" class="form-control" id="listing_subject" name="listing_subject" placeholder='' required>
                </div>
-
+              <div class="mb-3">
+                <label for="listing_subject" class="form-label">Môn học/Chủ đề</label>
+                <input type="text" class="form-control" id="listing_subject" name="listing_subject" placeholder='' required>
+               </div>
+               <div class="mb-3 form-group" id="Preview-image">
+                    <label class="form-label">Chọn ảnh preview sản phẩm</label>
+                    <input type="file" name="image" multiple="multiple" class="form-control-file" style="display: block;">
+                </div>
           </div>
 
           <div class="col-md-4">
               
               <div class="mb-3">
-                  <label for="document_author" class="form-label">Người biên soạn/Tác giả</label>
-                  <input type="text" class="form-control" id="document_author" name="document_author" placeholder=''>
+                  <label for="listing_author" class="form-label">Người biên soạn/Tác giả</label>
+                  <input type="text" class="form-control" id="listing_author" name="listing_author" placeholder=''>
               </div>
 
               <div class="mb-3">
-                  <label for="document_school" class="form-label">Trường (Nếu có)</label>
-                  <input type="text" class="form-control" id="document_school" name="document_school" placeholder=''>
+                  <label for="listing_school" class="form-label">Trường (Nếu có)</label>
+                  <input type="text" class="form-control" id="listing_school" name="listing_school" placeholder=''>
               </div>
 
               <div class="mb-3">
-                  <label for="document_year" class="form-label">Năm học/Năm xuất bản (Nếu có)</label>
-                  <input type="text" class="form-control" id="document_year" name="document_year" placeholder=''>
+                  <label for="listing_year" class="form-label">Năm học/Năm xuất bản (Nếu có)</label>
+                  <input type="text" class="form-control" id="listing_year" name="listing_year" placeholder=''>
               </div>
               <div class="mb-3">
-                <label for="document_amount" class="form-label">Giá tiền của tài liệu</label>
-                <input type="text" class="form-control" id="document_amount" name="document_amount" placeholder=''>
+                <label for="listing_price" class="form-label">Giá tiền của tài liệu</label>
+                <input type="text" class="form-control" id="listing_amount" name="listing_price" placeholder=''>
               </div>
               <div class="mb-3">
-                <label for="document_place" class="form-label">Nơi nhận tài liệu</label>
-                <input type="text" class="form-control" id="document_place" name="document_place" placeholder=''>
+                <label for="listing_location" class="form-label">Nơi nhận tài liệu</label>
+                <input type="text" class="form-control" id="listing_place" name="listing_location" placeholder=''>
               </div>
-              <div style="display: grid; place-items: center;">
-                <button type="submit" class="btn btn-primary">Đăng tải</button>
+              
+              
+              
+              
+              
             </div>
-              
-
-
-              
-              
-          </div>
-        </div>
-  </form>
-
-
-           
-
-  
-
-</div>
-<div class="container mt-5">
-    <form action="/upload" class="dropzone" id="myDropzone" enctype="multipart/form-data">
-        <!-- Nếu bạn muốn giới hạn số lượng tệp tin tối đa -->
-        <input type="hidden" name="MAX_FILE_SIZE" value="3145728"> <!-- 3 MB -->
-        <div class="fallback">
-            <input name="file" type="file" multiple />
         </div>
     </form>
+    
+    
+    
+    
+    
+    
+</div>
+<div style="display: grid; place-items: center;">
+  <button type="submit" class="btn btn-primary">Đăng tải</button>
 </div>
 
-    
-<!-- Thư viện Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Thư viện Dropzone.js -->
-<script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.2/dist/min/dropzone.min.js"></script>
-
-<script>
-    Dropzone.options.myDropzone = {
-        paramName: "file",
-        maxFiles: 3,
-        acceptedFiles: "image/*",
-        dictDefaultMessage:"Click vào đây để tải lên 3 ảnh của tài liệu",
-        addRemoveLinks: true,
-        init: function () {
-            this.on("complete", function (file) {
-            });
-        }
-    };
-</script>
-<style>
-    #myDropzone {
-        max-width: 500px; 
-        margin: 0 auto; 
-    }
-    .dropzone {
-        border: 2px dashed #007bff;
-        border-radius: 5px;
-        background-color: #f0f0f0;
-        padding: 20px;
-        margin: 20px 0;
-    }
-</style>
 {% endblock %}

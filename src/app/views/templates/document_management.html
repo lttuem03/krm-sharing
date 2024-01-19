@@ -32,6 +32,26 @@
         </form>
     </ul>
 
+    <h1>Đơn bán của tôi</h1>
+    <ul>
+        <form id="remove_listing_form" method="POST" enctype="multipart/form-data">
+            <input type="hidden" id="confimation_placeholder" name="confimation_placeholder" value="remove_listing_listing.id goes here">
+            {% for listing in listed %}
+                <li> 
+                    <a href="{{ url_for('listing_details', id=listing.id) }}">{{listing.name}}</a>
+                    <p style="display: inline;">Lượt xem: {{listing.view_count}}</p>
+                    <p style="display: inline;">Số lượng: {{listing.amount}}</p>
+                    <p style="display: inline;">Đánh giá: {{round_float(listing.rating, 2)}} sao ({{listing.rating_count}} lượt đánh giá) </p>
+                    <button type="button" 
+                            class="btn btn-primary btn-block btn-sm mx-auto" 
+                            id="remove_listing_btn" 
+                            name="remove_listing_{{listing.id}}">Gỡ khỏi nền tảng</button>
+                </li>
+            {% endfor %}
+        </form>
+        
+    </ul>
+
     <script>
         const removeButtons = document.querySelectorAll("#remove_document_btn");
         const confirmButton = document.getElementById("confirm_btn");

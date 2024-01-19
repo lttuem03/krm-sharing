@@ -1,5 +1,6 @@
 import datetime
 
+
 from app.models import db
 
 
@@ -10,13 +11,13 @@ class Listing(db.Model):
         db.Integer, db.ForeignKey('user.id'), nullable=False)
     date_posted = db.Column(
         db.DateTime, nullable=False, unique=False, default=datetime.datetime.now())
-    doc_type = db.Column(db.Unicode(24), nullable=True, unique=False)
     subject = db.Column(db.Unicode(100), nullable=True, unique=False)
     school = db.Column(db.Unicode(100), nullable=True, unique=False)
     author = db.Column(db.Unicode(64), nullable=True, unique=False)
     year = db.Column(db.Integer, nullable=True, unique=False)
     description = db.Column(db.Unicode(200), nullable=True,
                             unique=False, default="<Mô tả trống>")
+    amount = db.Column(db.Integer,nullable=False,unique=False,default=1)
     status = db.Column(db.Unicode, nullable=False, unique=False, default="Mới")
     price = db.Column(db.Integer, nullable=False, unique=False, default=0)
     location = db.Column(db.Unicode, nullable=False, unique=False, default='')
@@ -25,8 +26,6 @@ class Listing(db.Model):
                            unique=True, default='')
     # statistics
     view_count = db.Column(db.Integer, nullable=False, unique=False, default=0)
-    buy_count = db.Column(
-        db.Integer, nullable=False, unique=False, default=0)
 
     # update rating:
     #   rating = (rating * rating_count + new rate value) / (rating_count + 1)
