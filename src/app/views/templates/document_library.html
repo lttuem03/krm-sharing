@@ -34,4 +34,36 @@
                 {% endfor %}
           </tbody>
     </table>
+    <h3 style="padding: 10px;">krm-sharing hiện đang có {{ listing_count }} đơn bán:</h3>
+
+    <table class="table table-bordered">
+        <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên tài liệu</th>
+                    <th scope="col">Người đăng tải</th>
+                    <th scope="col">Ngày đăng tải</th>
+                    <th scope="col">Tình trạng</th>
+                    <th scope="col">Chủ đề</th>
+                    <th scope="col">Lượt xem</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Đánh giá (số lượt)</th>
+                </tr>
+          </thead>
+          <tbody>
+                {% for listing in all_listing %}
+                    <tr>
+                        <th scope="row"> {{loop.index}} </th>
+                        <td> <a href="{{ url_for('listing_details', id=listing.id) }}" style="text-decoration: none;"> {{listing.name}} </a></td>
+                        <td> {{get_postid(listing).name}} </td>
+                        <td> {{listing.date_posted.date()}} </td>
+                        <td> {{listing.status}} </td>
+                        <td> {{listing.subject}} </td>
+                        <td> {{listing.view_count}} </td>
+                        <td> {{listing.amount}} </td>
+                        <td> {{listing.rating}} </td>
+                    </tr>
+                {% endfor %}
+          </tbody>
+    </table>
 {% endblock %}

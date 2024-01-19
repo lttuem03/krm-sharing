@@ -94,6 +94,9 @@ class QueryEngine():
     @staticmethod
     def query_all_Documents() -> Query:
         return Document.query.all()
+    
+    def query_all_Listing():
+        return Listing.query.all()
 
     @staticmethod
     def query_Listing_by(column, value) -> Listing:

@@ -39,3 +39,6 @@ class SearchController():
     @staticmethod
     def get_all_documents():
         return QueryEngine.query_all_Documents()
+    
+    def get_all_listing():
+        return QueryEngine.query_all_Listing()
