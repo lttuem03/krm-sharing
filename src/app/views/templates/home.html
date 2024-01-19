@@ -33,61 +33,128 @@
         </form>
     </div>
 
-    <!-- <svg xmlns="http://www.w3.org/2000/svg" 
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:krita="http://krita.org/namespaces/svg/krita"
-        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-        idth="30.72pt"
-        height="30.72pt"
-        viewBox="0 0 30.72 30.72">
-    <defs/>
-        <path id="shape0" transform="matrix(0.144289460739414 0 0 0.144289460739414 0.239999891039226 2.45041425073217)" 
-            fill="#464646" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
-            d="M0 50.64L186 -5.32907e-15L205.68 69.36C206 72.72 205.2 76.08 203.28 79.44C201.36 82.8 194 96.48 181.2 120.48L197.28 131.28C205.68 135.6 207.68 138.24 203.28 139.2C198.88 140.16 142.64 155.36 34.56 184.8Z" sodipodi:nodetypes="ccczcczcc"/>
-        <path id="shape1" transform="matrix(0.144289460739414 0 0 0.144289460739414 26.3506207064436 12.9431438357024)" 
-            fill="#808080" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
-            d="M24.48 64.8L0 48L24.48 0" sodipodi:nodetypes="ccc"/>
-    </svg> -->
+
 </div>
 
    
 </div>
 
-<!-- top downloaded -->
-<div>
-    <h3>Top tài liệu được tải nhiều nhất</h3>
-    <ul>
-        {% for document in top_downloaded %}
-            <li> 
-                <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a>
-                <p style="display: inline;"> ({{document.download_count}} lượt tải)</p>
-            </li>
-        {% endfor %}
-    </ul>
-</div>
+<div class="css-div column css-margin" style="padding-top: 7rem; padding-bottom: 15rem; gap: 10rem;">
+<!-- top downloaded --> 
+    <div class="css-div left" style="align-items: flex-end; gap: 3rem; background-color: #bce4ff4b;">
+        <div style="align-self: flex-start; position: relative;">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:krita="http://krita.org/namespaces/svg/krita"
+                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                width="17rem"
+                height="17rem"
+                viewBox="0 0 30.72 30.72">
+                <defs/>
+                <path id="shape0" transform="matrix(0.144289460739414 0 0 0.144289460739414 0.239999891039226 2.45041425073217)" 
+                    fill="#ABFFFF" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
+                    d="M0 50.64L186 -5.32907e-15L205.68 69.36C206 72.72 205.2 76.08 203.28 79.44C201.36 82.8 194 96.48 181.2 120.48L197.28 131.28C205.68 135.6 207.68 138.24 203.28 139.2C198.88 140.16 142.64 155.36 34.56 184.8Z" sodipodi:nodetypes="ccczcczcc"/>
+                <path id="shape1" transform="matrix(0.144289460739414 0 0 0.144289460739414 26.3506207064436 12.9431438357024)" 
+                    fill="#22E4E4" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
+                    d="M24.48 64.8L0 48L24.48 0" sodipodi:nodetypes="ccc"/>
+            </svg>
 
-<!-- top viewed -->
-<div>
-    <h3>Top tài liệu được xem nhiều nhất</h3>
-    <ul>
-        {% for document in top_viewed %}
-            <li> 
-                <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a>
-                <p style="display: inline;"> ({{document.view_count}} lượt xem)</p>
-            </li>
+            <h3 style="transform: rotate(-15.349deg); width: 13rem; overflow-wrap: break-word; text-align: start;
+                position: absolute; top: 4rem; left: 2rem;">
+                Top tài liệu được tải nhiều nhất
+            </h3>
+        </div>
+        {% for document in top_downloaded %}
+            <a href="{{ url_for('document_details', id=document.id) }}" 
+                class="css-div column vertical-center css-underline-animation-black" 
+                style="max-width: 17rem; box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 2%;"> 
+
+                <img src="{{ url_for('static', filename=get_thumbnail_path(document.id)) }}" 
+                    style="padding: 1rem; max-width: 16rem;"></img>
+
+                <h5 style="max-width: 16rem; overflow-wrap: break-word;">{{document.name}}</h5>
+                <h6> ({{document.download_count}} lượt tải)</h6>
+            </a>
         {% endfor %}
-    </ul>
-</div>
+    </div>
+
+
+    <!-- top viewed -->
+    <div class="css-div left" style="align-items: flex-end; gap: 3rem; background-color: #bce4ff4b;">
+        <div style="align-self: flex-start; position: relative;">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:krita="http://krita.org/namespaces/svg/krita"
+                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                width="17rem"
+                height="17rem"
+                viewBox="0 0 30.72 30.72">
+                <defs/>
+                <path id="shape0" transform="matrix(0.144289460739414 0 0 0.144289460739414 0.239999891039226 2.45041425073217)" 
+                    fill="#F5FF87" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
+                    d="M0 50.64L186 -5.32907e-15L205.68 69.36C206 72.72 205.2 76.08 203.28 79.44C201.36 82.8 194 96.48 181.2 120.48L197.28 131.28C205.68 135.6 207.68 138.24 203.28 139.2C198.88 140.16 142.64 155.36 34.56 184.8Z" sodipodi:nodetypes="ccczcczcc"/>
+                <path id="shape1" transform="matrix(0.144289460739414 0 0 0.144289460739414 26.3506207064436 12.9431438357024)" 
+                    fill="#E7EA4B" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
+                    d="M24.48 64.8L0 48L24.48 0" sodipodi:nodetypes="ccc"/>
+            </svg>
+
+            <h3 style="transform: rotate(-15.349deg); width: 13rem; overflow-wrap: break-word; text-align: start;
+                position: absolute; top: 4rem; left: 2rem;">
+                Top tài liệu được xem nhiều nhất
+            </h3>
+        </div>
+        {% for document in top_viewed %}
+            <a href="{{ url_for('document_details', id=document.id) }}" 
+                class="css-div column vertical-center css-underline-animation-black" 
+                style="max-width: 17rem; box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 2%;"> 
+
+                <img src="{{ url_for('static', filename=get_thumbnail_path(document.id)) }}" 
+                    style="padding: 1rem; max-width: 16rem;"></img>
+
+                <h5 style="max-width: 16rem; overflow-wrap: break-word;">{{document.name}}</h5>
+                <h6> ({{document.view_count}} lượt xem)</h6>
+            </a>
+        {% endfor %}
+    </div>
 
 <!-- top users with the most upload count -->
-<div>
-    <h3>Top người dùng chia sẻ kiến thức nhiều nhất</h3>
-    {% for user, upload_count in top_user_upload_count.items() %}
-            <li> 
-                <a href="{{ url_for('user_profile', username=user.username) }}">{{user.name}}</a>
-                <p style="display: inline;"> (đã đăng tải {{upload_count}} tài liệu)</p>
-            </li>
-    {% endfor %}
+    <div class="css-div left" style="align-items: flex-end; gap: 3rem; background-color: #bce4ff4b;">
+        <div style="align-self: flex-start; position: relative;">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:krita="http://krita.org/namespaces/svg/krita"
+                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                width="17rem"
+                height="17rem"
+                viewBox="0 0 30.72 30.72">
+                <defs/>
+                <path id="shape0" transform="matrix(0.144289460739414 0 0 0.144289460739414 0.239999891039226 2.45041425073217)" 
+                    fill="#ABFFFF" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
+                    d="M0 50.64L186 -5.32907e-15L205.68 69.36C206 72.72 205.2 76.08 203.28 79.44C201.36 82.8 194 96.48 181.2 120.48L197.28 131.28C205.68 135.6 207.68 138.24 203.28 139.2C198.88 140.16 142.64 155.36 34.56 184.8Z" sodipodi:nodetypes="ccczcczcc"/>
+                <path id="shape1" transform="matrix(0.144289460739414 0 0 0.144289460739414 26.3506207064436 12.9431438357024)" 
+                    fill="#22E4E4" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
+                    d="M24.48 64.8L0 48L24.48 0" sodipodi:nodetypes="ccc"/>
+            </svg>
+
+            <h3 style="transform: rotate(-15.349deg); width: 13rem; overflow-wrap: break-word; text-align: start;
+                position: absolute; top: 4rem; left: 2rem;">
+                Top người dùng chia sẻ kiến thức nhiều nhất
+            </h3>
+        </div>
+
+        {% for user, upload_count in top_user_upload_count.items() %}
+            <a href="{{ url_for('user_profile', username=user.username) }}" 
+                class="css-div column vertical-center css-underline-animation-black" 
+                style="max-width: 17rem; box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25); border-radius: 2%;"> 
+
+                <img src="{{ get_current_avatar_path(user.id) }}" 
+                    style="padding: 1rem; max-width: 16rem;"></img>
+
+                <h5 style="max-width: 16rem; overflow-wrap: break-word;">{{user.name}}</h5>
+                <h6> (đã đăng tải {{upload_count}} tài liệu)</h6>
+            </a>
+        {% endfor %}
+    </div>
 </div>
 
 <!-- live search functionality, courtesy to: https://youtu.be/hjAnhqR-XZk-->

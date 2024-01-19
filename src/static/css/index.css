@@ -177,6 +177,7 @@ h6 {
     height: 100vh;
     margin: 0;
     
+    /* background-color: linear-gradient(to bottom, #f0f0f0 0%, #f0f0f0 90%, #FFF 100%); */
     background-color: #f0f0f0;
     display: flex;
     justify-content: center;
