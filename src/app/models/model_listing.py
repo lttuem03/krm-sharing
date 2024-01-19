@@ -18,9 +18,9 @@ class Listing(db.Model):
     description = db.Column(db.Unicode(200), nullable=True,
                             unique=False, default="<Mô tả trống>")
     amount = db.Column(db.Integer,nullable=False,unique=False,default=1)
-    status = db.Column(db.Unicode, nullable=False, unique=False, default="Mới")
+    status = db.Column(db.Unicode(12), nullable=False, unique=False, default="Mới")
     price = db.Column(db.Integer, nullable=False, unique=False, default=0)
-    location = db.Column(db.Unicode, nullable=False, unique=False, default='')
+    location = db.Column(db.Unicode(50), nullable=False, unique=False, default='')
     # image folder [krm-id] + (tên tài liệu)
     foldername = db.Column(db.String(256), nullable=False,
                            unique=True, default='')

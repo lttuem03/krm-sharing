@@ -72,7 +72,7 @@ krm_app_instance.add_url_rule("/upload/", endpoint="upload", view_func=UploadVie
 krm_app_instance.add_url_rule("/document/<int:id>", endpoint="document_details", view_func=DocumentDetailsView.as_view("document_details"))
 krm_app_instance.add_url_rule("/manage_documents/", endpoint="document_management", view_func=DocumentManagementView.as_view("document_management"))
 krm_app_instance.add_url_rule("/listing/", endpoint="create_listing", view_func=ListingView.as_view("create_listing"))
-
+krm_app_instance.add_url_rule("/listing/<int:id>",endpoint='listing_details',view_func=ListingView.as_view("listing_details"))
 
 krm_app_instance.add_url_rule("/livesearch", endpoint="livesearch", view_func=LiveSearchProcessingView.as_view("livesearch"))
 

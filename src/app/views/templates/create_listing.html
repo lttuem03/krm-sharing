@@ -32,8 +32,8 @@
                   <option value="Cũ">Cũ (40%)</option>
               </select>
               <div class="mb-3">
-                <label for="listing_amount" class="form-label">Môn học/Chủ đề</label>
-                <input type="text" class="form-control" id="listing_subject" name="listing_subject" placeholder='' required>
+                <label for="listing_amount" class="form-label">Số lượng</label>
+                <input type="text" class="form-control" id="listing_amount" name="listing_amount" placeholder='' required>
                </div>
               <div class="mb-3">
                 <label for="listing_subject" class="form-label">Môn học/Chủ đề</label>
@@ -69,6 +69,9 @@
                 <label for="listing_location" class="form-label">Nơi nhận tài liệu</label>
                 <input type="text" class="form-control" id="listing_place" name="listing_location" placeholder=''>
               </div>
+              <div style="display: grid; place-items: center;">
+                <button type="submit" class="btn btn-primary">Đăng tải</button>
+              </div>
               
               
               
@@ -83,9 +86,6 @@
     
     
     
-</div>
-<div style="display: grid; place-items: center;">
-  <button type="submit" class="btn btn-primary">Đăng tải</button>
 </div>
 
 {% endblock %}

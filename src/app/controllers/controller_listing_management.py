@@ -14,6 +14,7 @@ from .utils import (allowed_file)
 
 from ..config import UPLOAD_FOLDER
 
+from shutil import rmtree
 
 class ListingManagementController():
     @staticmethod
@@ -31,6 +32,7 @@ class ListingManagementController():
         listing_school = request.form.get("listing_school")
         listing_status = request.form.get("listing_status")
         listing_price = request.form.get("listing_price")
+        listing_amount = request.form.get("listing_amount")
         listing_location = request.form.get("listing_location")
 
         if "image" not in request.files:
@@ -79,20 +81,23 @@ class ListingManagementController():
         if files:
             new_listing = Listing(name=listing_name,
                                   description=listing_description,
-                                  uploader_id=current_user.id,
+                                  post_id=current_user.id,
                                   subject=listing_subject,
                                   author=listing_author,
                                   school=listing_school,
                                   year=listing_year,
+                                  amount=listing_amount,
                                   status=listing_status,
                                   price=listing_price,
-                                  location=listing_location)
+                                  location=listing_location,
+                                  foldername='temp')
 
             db.session.add(new_listing)
             db.session.commit()
             # update values in database
-            new_listing.filename = filename
             folder_name = f'[krm-{new_listing.id}] {listing_name}'
+            new_listing.foldername = folder_name
+            db.session.commit()
             save_folder = os.path.join(UPLOAD_FOLDER, folder_name)
             if not os.path.exists(save_folder):
                 os.makedirs(save_folder)
@@ -114,7 +119,7 @@ class ListingManagementController():
 
     @staticmethod
     def get_uploaded(user_id):
-        return QueryEngine.query_listings_by("uploader_id", user_id)
+        return QueryEngine.query_all_Listing_by("post_id", user_id)
 
     @staticmethod
     def get_bookmarked(user_id):
@@ -123,7 +128,7 @@ class ListingManagementController():
 
         bookmarked = []
         for entry in bookmark_entrys:
-            query_listing = QueryEngine.query_listing_by(
+            query_listing = QueryEngine.query_Listing_by(
                 "id", entry.listing_id)
 
             if query_listing != None:
@@ -140,7 +145,7 @@ class ListingManagementController():
         """
         # Remove from the file server
         try:
-            os.remove(os.path.join(UPLOAD_FOLDER, listing.foldername))
+            rmtree(os.path.join(UPLOAD_FOLDER, listing.foldername),ignore_errors=True)
         except OSError:
             pass
 
