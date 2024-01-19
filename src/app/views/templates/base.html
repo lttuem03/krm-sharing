@@ -29,14 +29,8 @@
                 </a></h5> 
                 
                 <h5><a href="#" class="css-underline-animation-white">
-                    Thể loại
-                </a></h5> 
-
-                {%if user.is_authenticated == True%}
-                <h5><a href="{{ url_for('document_management')}}" class="css-underline-animation-white">
-                    Quản lí tài liệu
-                </a></h5> 
-                {%endif%}
+                    Thư viện tài liệu
+                </a></h5>    
             </div>
 
             <!--    Logo    -->
@@ -58,6 +52,11 @@
                 </a></h5>
 
                 {%else%}
+               
+                <h5 style="padding-top: 9px;"><a href="{{ url_for('document_management')}}" class="css-underline-animation-white">
+                    Quản lí tài liệu
+                </a></h5> 
+                
                 <div class="css-dropdown">
                     <h5 id="dropdown-btn" class="css-underline-animation-white" onclick="dropdown()">
                         Đăng tải
