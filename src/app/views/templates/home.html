@@ -70,6 +70,9 @@
 
                         res += '<a href="' + url_id +'" id="suggestion_hyperlink" style="color: black; text-decoration: none;" onMouseOver="this.style.color=\'#808080\'" onMouseOut="this.style.color=\'#000000\'"> <div style="background-color: white; text-align: left; padding-left: 10px;">' + filename + '</div> </a>';
                     }
+                    
+                    if (res == "")
+                        res = '<div style="background-color: white; text-align: left; padding-left: 10px;"> (Không tìm thấy tài liệu) </div>';
 
                     $("#search_suggestion").html(res);
                 }
@@ -77,7 +80,7 @@
         }
         else
         {
-            $("#search_suggestion").html("");
+            $("#search_suggestion").html('<div style="background-color: white; text-align: left; padding-left: 10px;"> (Không tìm thấy tài liệu) </div>');
         } 
     }
 

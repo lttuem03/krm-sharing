@@ -24,10 +24,10 @@ class MyProfileView(MethodView):
         return render_template("user_profile.html", user=current_user)
 
 class UserProfileView(MethodView):
-    def get(self, id):
-        user = UserProfileController.get_user(id)
+    def get(self, username):
+        user = UserProfileController.get_user(username)
 
-        return render_template("user_profile.html", user=user)
+        return render_template("user_profile.html", user=user, current_user=current_user)
     
 class ChangeAvatarView(MethodView):
     def get(self):

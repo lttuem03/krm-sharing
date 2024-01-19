@@ -22,13 +22,15 @@
               {{user.name}}
             </div>
         </ul>
+
+        {%if user.id == current_user.id %}
           <div>
             <form method="POST" enctype="multipart/form-data">
                 <button type="submit" name="change_avatar_request" class="btn btn-outline-dark">Đổi ảnh đại diện</button>
                 <button type="submit" name="change_password_request" class="btn btn-outline-dark">Đổi mật khẩu</button>
             </form>
           </div>
-        
+        {%endif%}
         <ul>
             <div class="card" style="width: 50rem">
               <ul class="list-group list-group-flush">

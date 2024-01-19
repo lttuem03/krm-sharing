@@ -19,8 +19,8 @@ from ..config import USER_AVATAR_FOLDER
 
 class UserProfileController():
     @staticmethod
-    def get_user(user_id) -> (None | User):
-        return QueryEngine.query_User_by("id", user_id)
+    def get_user(username) -> (None | User):
+        return QueryEngine.query_User_by("username", username)
     
     @staticmethod
     def process_change_avatar():
@@ -44,13 +44,13 @@ class UserProfileController():
 
             id_padded_filename = "[user-{id:0>5}]_avatar.jpg".format(id=str(current_user.id)) # format: "[user-00001]_avatar.jpg"
 
-            file.save(os.path.join(os.path.dirname(__file__), USER_AVATAR_FOLDER, filename))
+            file.save(os.path.join(USER_AVATAR_FOLDER, filename))
 
-            if os.path.exists(os.path.join(os.path.dirname(__file__), USER_AVATAR_FOLDER, id_padded_filename)):
-                os.remove(os.path.join(os.path.dirname(__file__), USER_AVATAR_FOLDER, id_padded_filename))
+            if os.path.exists(os.path.join(USER_AVATAR_FOLDER, id_padded_filename)):
+                os.remove(os.path.join(USER_AVATAR_FOLDER, id_padded_filename))
 
-            os.rename(os.path.join(os.path.dirname(__file__), USER_AVATAR_FOLDER, filename), 
-                      os.path.join(os.path.dirname(__file__), USER_AVATAR_FOLDER, id_padded_filename))
+            os.rename(os.path.join(USER_AVATAR_FOLDER, filename), 
+                      os.path.join(USER_AVATAR_FOLDER, id_padded_filename))
 
             flash("Đổi ảnh đại diện thành công", category="success")
             return True

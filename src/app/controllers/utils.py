@@ -78,7 +78,7 @@ def create_and_save_thumbmail(filename: str):
 
         thumbnail_filename = filename[:11] + "_thumbnail.jpg" # format: [krm-00003]_thumbnail.jpg
 
-        thumbnail.save(os.path.join(os.path.dirname(__file__), DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
+        thumbnail.save(os.path.join(DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
         document.close()
 
         return True
@@ -86,9 +86,9 @@ def create_and_save_thumbmail(filename: str):
     if file_extension == "docx":
         # convert the "docx" file into a pdf file (then delete the pdf file later)
         convert(input_path=os.path.join(UPLOAD_FOLDER, filename), 
-                                    output_path=os.path.join(os.path.dirname(__file__), DOCUMENT_THUMBNAIL_FOLDER))
+                                    output_path=DOCUMENT_THUMBNAIL_FOLDER)
         
-        pdf_document_path = os.path.join(os.path.dirname(__file__), DOCUMENT_THUMBNAIL_FOLDER, filename)
+        pdf_document_path = os.path.join(DOCUMENT_THUMBNAIL_FOLDER, filename)
         pdf_document_path = pdf_document_path[:-5] + ".pdf"
 
         # do the same stuffs like the "pdf" case
@@ -97,7 +97,7 @@ def create_and_save_thumbmail(filename: str):
 
         thumbnail_filename = filename[:11] + "_thumbnail.jpg" # format: [krm-00003]_thumbnail.jpg
 
-        thumbnail.save(os.path.join(os.path.dirname(__file__), DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
+        thumbnail.save(os.path.join(DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
 
         # delete the pdf file
         document.close()
@@ -115,7 +115,7 @@ def create_and_save_thumbmail(filename: str):
         powerpoint_obj = client.CreateObject("Powerpoint.Application")
         powerpoint_obj.Visible = 1
 
-        pdf_document_path = os.path.join(os.path.dirname(__file__), DOCUMENT_THUMBNAIL_FOLDER, filename)
+        pdf_document_path = os.path.join(DOCUMENT_THUMBNAIL_FOLDER, filename)
         pdf_document_path = pdf_document_path[:-5] + ".pdf"
 
         deck = powerpoint_obj.Presentations.Open(os.path.join(UPLOAD_FOLDER, filename))
@@ -129,7 +129,7 @@ def create_and_save_thumbmail(filename: str):
 
         thumbnail_filename = filename[:11] + "_thumbnail.jpg" # format: [krm-00003]_thumbnail.jpg
 
-        thumbnail.save(os.path.join(os.path.dirname(__file__), DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
+        thumbnail.save(os.path.join(DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
 
         # delete the pdf file
         document.close()
@@ -159,7 +159,7 @@ def create_and_save_thumbmail(filename: str):
                 y_position += 24
                 line =  txt_file.readline()
             
-            thumbnail.save(os.path.join(os.path.dirname(__file__), DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
+            thumbnail.save(os.path.join(DOCUMENT_THUMBNAIL_FOLDER, thumbnail_filename))
         
         return True
     
@@ -235,7 +235,7 @@ def round_float(value, num_places_after_decimal_point):
 def get_current_avatar_path(user_id):
     avatar_filename = "[user-{id:0>5}]_avatar.jpg".format(id=str(user_id)) # format "[user-00001]_avatar.jpg"
     
-    if os.path.exists(os.path.join(os.path.dirname(__file__), USER_AVATAR_FOLDER, avatar_filename)):
+    if os.path.exists(os.path.join(USER_AVATAR_FOLDER, avatar_filename)):
         return "/static/images/user_avatars/{}".format(avatar_filename)
     
     return "/static/images/defaut_user.jpg"

@@ -1,8 +1,8 @@
-from os import path
+import os
+
 from flask import Flask
 
 from app.controllers.controller_authentication import login_manager
-#from .utils import get_uploader
 
 from app.views import (HomeView,
                        LoginView,
@@ -36,6 +36,16 @@ from .config import *
 krm_app_instance = Flask(__name__, template_folder=".\\views\\templates",
                                     static_folder=".\\..\\static")
 
+# Create neccessary paths
+if os.path.exists(UPLOAD_FOLDER) == False:
+    os.mkdir(UPLOAD_FOLDER)
+
+if os.path.exists(DOCUMENT_THUMBNAIL_FOLDER) == False:
+    os.mkdir(DOCUMENT_THUMBNAIL_FOLDER)
+
+if os.path.exists(USER_AVATAR_FOLDER) == False:
+    os.mkdir(USER_AVATAR_FOLDER)
+
 # Configs
 krm_app_instance.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 krm_app_instance.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH_IN_MB * 1024 * 1024 # in bytes
@@ -53,7 +63,7 @@ krm_app_instance.add_url_rule("/login/", endpoint="login", view_func=LoginView.a
 krm_app_instance.add_url_rule("/logout/", endpoint="logout", view_func=LogoutView.as_view("logout"))
 krm_app_instance.add_url_rule("/register/", endpoint="register", view_func=RegisterView.as_view("register"))
 krm_app_instance.add_url_rule("/profile/me", endpoint="my_profile", view_func=MyProfileView.as_view("my_profile"))
-krm_app_instance.add_url_rule("/profile/<int:id>", endpoint="user_profile", view_func=UserProfileView.as_view("user_profile"))
+krm_app_instance.add_url_rule("/profile/<string:username>", endpoint="user_profile", view_func=UserProfileView.as_view("user_profile"))
 krm_app_instance.add_url_rule("/profile/change_avatar", endpoint="change_avatar", view_func=ChangeAvatarView.as_view("change_avatar"))
 krm_app_instance.add_url_rule("/profile/change_password", endpoint="change_password", view_func=ChangePasswordView.as_view("change_password"))
 

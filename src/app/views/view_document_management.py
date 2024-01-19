@@ -2,7 +2,7 @@ from flask import (request,
                    render_template, 
                    redirect, 
                    url_for,
-                   send_from_directory)
+                   flash)
 from flask.typing import ResponseReturnValue
 
 from flask.views import View
@@ -42,10 +42,29 @@ class UploadView(View):
     
 class DocumentManagementView(View):
     decorators = [login_required]
-    methods = ["GET"]
+    methods = ["GET", "POST"]
 
     def dispatch_request(self):
         uploaded = DocumentManagementController.get_uploaded(user_id=current_user.id)
         bookmarked = DocumentManagementController.get_bookmarked(user_id=current_user.id)
 
+        if request.method == "POST":
+            print(request.form['confimation_placeholder'])
+
+            to_be_removed = None
+
+            for document in uploaded:
+                request_name = "remove_document_" + str(document.id)
+                if request_name == request.form['confimation_placeholder']:
+                    # removing this document
+                    to_be_removed = document
+                    print("removing " + request_name)
+                    break
+
+            if to_be_removed:
+                remove_successful = DocumentManagementController.remove_document(to_be_removed)
+                
+                if remove_successful:
+                    flash("Gỡ tài liệu khỏi nền tẳng thành công", category="success")  
+            
         return render_template("document_management.html", user=current_user, uploaded=uploaded, bookmarked=bookmarked)

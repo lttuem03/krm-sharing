@@ -121,3 +121,23 @@ class DocumentManagementController():
                 bookmarked.append(query_document)
 
         return bookmarked
+    
+    @staticmethod
+    def remove_document(document: Document):
+        """
+        Process an attempt to remove a document from the platform.
+
+        Return True if successful, otherwise return False
+        """
+        # Remove from the file server
+        try:
+            os.remove(os.path.join(UPLOAD_FOLDER, document.filename))
+        except OSError:
+            pass
+        
+        # Remove from the database
+        db.session.delete(document)
+        db.session.commit()
+
+        return True
+
