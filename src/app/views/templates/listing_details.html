@@ -3,10 +3,10 @@
 {% block title %} {{listing.name}} {% endblock %}
 
 {% block content %}
-    <img src="{{ url_for('static', filename=get_thumbnail_path(listing.id)) }}" style="padding-left: 10px; border: 2px solid; border-color: black;"></img>
+    <img src="{{ url_for('static', filename=get_listing_thumbnail(listing.foldername)) }}" style="padding-left: 10px; border: 2px solid; border-color: black;"></img>
     <h2>Tên tài liệu: {{listing.name}}</h2>
-    <h3>Người đăng tải: {{get_uploader(listing).name}}</h3>
-    <h3>Ngày đăng tải: {{listing.date_uploaded.date()}}</h3>
+    <h3>Người đăng tải: {{get_postid(listing).name}}</h3>
+    <h3>Ngày đăng tải: {{listing.date_posted.date()}}</h3>
     <h3>Loại tài liệu: {{listing.type}}</h3>
     <h3>Môn học/Chủ đề: {{listing.subject}}</h3>
     {%if listing.description != None %}
@@ -39,11 +39,6 @@
     <h3>Khu vực người bán : {{listing.location}}</h3>
     
     <h3> Lượt xem: {{listing.view_count}}</h3>
-    <h3 style="display: inline;">
-        Lượt tải:
-    </h3>
-
-    <h3 id="buy-count" style="display: inline;">{{listing.buy_count}}</h3>
     <h3>Đánh giá: {{round_float(listing.rating, 2)}}</h3>
     <h3>Số lượt đánh giá: {{listing.rating_count}}</h3>
     

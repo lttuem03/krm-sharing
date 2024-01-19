@@ -7,7 +7,7 @@ from flask_login import current_user
 
 from app.controllers import ListingDetailsController
 
-from ..config import UPLOAD_FOLDER
+from ..config import LISTING_PREVIEW
 
 
 class ListingDetailsView(MethodView):
@@ -28,7 +28,7 @@ class ListingDetailsView(MethodView):
 
         if "download_request" in request.form:
             ListingDetailsController.update_downloadcount(listing)
-            return send_from_directory(UPLOAD_FOLDER, listing.filename, as_attachment=True)
+            return send_from_directory(LISTING_PREVIEW, listing.filename, as_attachment=True)
 
         if "bookmark_request" in request.form:
             ListingDetailsController.change_bookmark_state(listing)

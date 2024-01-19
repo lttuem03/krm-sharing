@@ -3,7 +3,7 @@ src/file_server/
 
 # IMPORTANT: ignore document thumbnail folder
 src/static/images/document_thumbnails/
-
+src/static/images/listing_preview/
 # IMPORTANT: ignore user avatars folder
 src/static/images/user_avatars/
 

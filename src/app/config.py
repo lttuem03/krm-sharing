@@ -12,7 +12,7 @@ DB_SECRET_KEY = 'WGluIHRow6LMgHkgY2hvIHR1zKNpIGVtIHF1YSBtw7Ru'
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'file_server') # '.../src/file_server'
 DOCUMENT_THUMBNAIL_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'static', 'images', 'document_thumbnails') # '.../src/static/images/document_thumbnails'
 USER_AVATAR_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'static', 'images', 'user_avatars') # '.../src/static/images/user_avatars'
-LISTING_PREVIEW = os.path.join(os.path.dirname(__file__),'..','static','image','listing_preview')
+LISTING_PREVIEW = os.path.join(os.path.dirname(__file__),'..','static','images','listing_preview')
 
 # allowed extensions
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx', 'pptx', 'png', 'jpeg', 'jpg'}

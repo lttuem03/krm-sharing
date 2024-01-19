@@ -15,7 +15,7 @@ from PIL import Image, ImageDraw, ImageFont
 from app.models.query_engine import QueryEngine
 from app.models.model_document import Document
 
-from ..config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER, DOCUMENT_THUMBNAIL_FOLDER, USER_AVATAR_FOLDER
+from ..config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER, DOCUMENT_THUMBNAIL_FOLDER,LISTING_PREVIEW, USER_AVATAR_FOLDER
 
 def check_email_availability(email, msg="Email này đã được sử dụng, vui lòng chọn email khác"):
     user_by_email = QueryEngine.query_User_by("email", email)
@@ -177,6 +177,9 @@ def get_uploader(document: Document):
     uploader = QueryEngine.query_User_by("id", document.uploader_id)
 
     return uploader
+def get_postid(listing):
+    postid = QueryEngine.query_User_by("id",listing.post_id)
+    return postid
 
 def is_bookmarked_by_current_user(document_id):
     query = QueryEngine.query_Bookmarking_Table(current_user.id, document_id)
@@ -190,6 +193,15 @@ def get_thumbnail_path(document_id):
     thumbnail_filename = "[krm-{id:0>5}]_thumbnail.jpg".format(id=str(document_id))
 
     return "images/document_thumbnails/{}".format(thumbnail_filename)
+
+def get_image_list(listing_folder):
+    folder_dir = os.path.join(LISTING_PREVIEW,listing_folder)
+    return os.listdir(folder_dir)
+
+def get_listing_thumbnail(listing_folder):
+    folder_dir = os.path.join(LISTING_PREVIEW, listing_folder)
+    first_img = get_image_list(listing_folder)[0]
+    return f"images/listing_preview/{listing_folder}/{first_img}"
 
 def get_num_uploaded(user_id):
     num_uploaded = QueryEngine.query_Documents_by("uploader_id", user_id).count()
