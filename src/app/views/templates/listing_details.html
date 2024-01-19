@@ -44,11 +44,11 @@
     
     <form method="POST" enctype="multipart/form-data">
         <!--Downloading section-->
-        <button id="download-btn" 
-                name="download_request" 
+        <button id="order-btn" 
+                name="order_request" 
                 type="submit" 
                 class="btn btn-primary"
-                onclick="update_downloadcount()">Tải xuống</button>
+                onclick="update_amount()">Tải xuống</button>
 
         <!--Bookmarking section-->
         {%if is_bookmarked_by_current_user(listing.id) == False %}
