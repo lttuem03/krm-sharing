@@ -1,37 +1,29 @@
 {% extends "base.html" %}
 {% block title %}Đăng nhập{% endblock %}
 {% block content %}
-<head>
-    <style>
-        body {
-            background-color: #f0f0f0; /* Màu xám nhạt */
-        }
-    </style>
-</head>
-<body class="bg-light">
-    <div class="container d-flex justify-content-center align-items-center">
-        <div class="content-container p-4 bg-white rounded">
-            <div class="css-background-1">
-                <form method="POST" class="css-container">
-                    <h2 class="text-primary text-center">Đăng nhập</h2>
-                    <div class="form-group">
-                        <label for="username_email" class="small">Địa chỉ email hoặc tên đăng nhập</label>
-                        <input type="text" class="form-control" id="username_email" name="username_email" placeholder="Nhập email hoặc tên đăng nhập">
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="small">Mật khẩu</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu">
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="remember_me" name="remember_me" value="remember_me">
-                        <label class="form-check-label small" for="remember_me">Ghi nhớ đăng nhập</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-sm mx-auto"><h5>Đăng nhập</h5></button>
-                </form>
+<div class="css-background-2">
+    <form method="POST" class="css-container">
+        <h2 class="css-text-blue">Đăng nhập</h2>
+
+        <div class="css-div column" style="gap: 1rem">
+            <div class="form-group">
+                <h5 for="username_email">Địa chỉ email hoặc tên đăng nhập</h5>
+                <input type="text" class="form-control" id="username_email" name="username_email" placeholder="Nhập email hoặc tên đăng nhập">
+            </div>
+
+            <div class="form-group">
+                <h5 for="password">Mật khẩu</h5>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu">
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="remember_me" name="remember_me" value="remember_me">
+                <label class="form-check-label small" for="remember_me">Ghi nhớ đăng nhập</label>
             </div>
         </div>
-    </div>
-</body>
 
+        <button type="submit" class="btn css-btn" style="align-self: center;"><h5>Đăng nhập</h5></button>
+    </form>
+</div>
 {% endblock %}
 

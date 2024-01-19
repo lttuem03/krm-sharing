@@ -3,44 +3,38 @@
 {% block title %}Đăng ký{% endblock %}
 
 {% block content %}
-<head>
-    <style>
-        body {
-            background-color: #f0f0f0; /* Màu xám nhạt */
-        }
-    </style>
-</head>
+<div class="css-background-2">
+    <form method="POST" class="css-container">
+        <h2 class="css-text-blue">Đăng ký</h2>
 
-<body class="bg-light">
-    <div class="container d-flex justify-content-center align-items-center">
-        <div class="content-container p-4 bg-white rounded">
-            <div class="css-background-1">
-                <form method="POST" class="css-container">
-                    <h2 class="text-primary text-center">Đăng ký</h2>
-                    <div class="form-group">
-                        <label for="name"class="small">Họ và tên</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên" required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="email"class="small">Địa chỉ Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Nhập địa chỉ email" required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="username"class="small">Tên đăng nhập</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập (5-24 kí tự)" required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="password"class="small">Mật khẩu</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="repeat_password"class="small">Nhập lại mật khẩu</label>
-                        <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Nhập lại mật khẩu" required/>
-                    </div> 
-                    <button type="submit" class="btn btn-primary btn-block btn-sm mx-auto mt-3">Xác nhận</button>
-                </form>
+        <div class="css-div column" style="gap: 1rem">
+            <div class="form-group">
+                <h5 for="name">Họ và tên</h5>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên" required/>
+            </div>
+
+            <div class="form-group">
+                <h5 for="email">Địa chỉ Email</h5>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Nhập địa chỉ email" required/>
+            </div>
+
+            <div class="form-group">
+                <h5 for="username">Tên đăng nhập</h5>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập (5-24 kí tự)" required/>
+            </div>
+
+            <div class="form-group">
+                <h5 for="password"class="small">Mật khẩu</h5>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required/>
+            </div>
+
+            <div class="form-group">
+                <h5 for="repeat_password"class="small">Nhập lại mật khẩu</h5>
+                <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Nhập lại mật khẩu" required/>
             </div>
         </div>
-    </div>
-</body>
+
+        <button type="submit" class="btn css-btn" style="align-self: center;">Xác nhận</button>
+    </form>
+</div>
 {% endblock %}

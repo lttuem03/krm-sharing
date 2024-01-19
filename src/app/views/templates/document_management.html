@@ -3,8 +3,6 @@
 {% block title %} Quản lý tài liệu {% endblock %}
 
 {% block content %}
-    
-
     <dialog id="confirmation_dialog">
         <p>Bạn chắc chắn muốn gỡ tài liệu này khỏi nền tảng ?</p>
         <div>
@@ -13,44 +11,116 @@
         </div>
     </dialog>
 
-    <h2>Đăng tải bởi tôi</h2>
-    <ul>
-        <form id="remove_document_form" method="POST" enctype="multipart/form-data">
-            <input type="hidden" id="confimation_placeholder" name="confimation_placeholder" value="remove_document_document.id goes here">
-            {% for document in uploaded %}
-                <li> 
-                    <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a>
-                    <p style="display: inline;">Lượt xem: {{document.view_count}}</p>
-                    <p style="display: inline;">Lượt tải: {{document.download_count}}</p>
-                    <p style="display: inline;">Đánh giá: {{round_float(document.rating, 2)}} sao ({{document.rating_count}} lượt đánh giá) </p>
-                    <button type="button" 
-                            class="btn btn-primary btn-block btn-sm mx-auto" 
-                            id="remove_document_btn" 
-                            name="remove_document_{{document.id}}">Gỡ khỏi nền tảng</button>
-                </li>
-            {% endfor %}
-        </form>
-    </ul>
+    <div class="css-div column" style="gap: 5rem; padding: 3rem 3.5rem;">
+        <div class="css-div column" style="gap: 1rem">
+            <h3 class="css-text-blue">Đăng tải bởi tôi</h3>
 
-    <h2>Đơn bán của tôi</h2>
-    <ul>
-        <form id="remove_listing_form" method="POST" enctype="multipart/form-data">
-            <input type="hidden" id="confimation_placeholder" name="confimation_placeholder" value="remove_listing_listing.id goes here">
-            {% for listing in listed %}
-                <li> 
-                    <a href="{{ url_for('listing_details', id=listing.id) }}">{{listing.name}}</a>
-                    <p style="display: inline;">Lượt xem: {{listing.view_count}}</p>
-                    <p style="display: inline;">Số lượng: {{listing.amount}}</p>
-                    <p style="display: inline;">Đánh giá: {{round_float(listing.rating, 2)}} sao ({{listing.rating_count}} lượt đánh giá) </p>
-                    <button type="button" 
-                            class="btn btn-primary btn-block btn-sm mx-auto" 
-                            id="remove_listing_btn" 
-                            name="remove_listing_{{listing.id}}">Gỡ khỏi nền tảng</button>
-                </li>
-            {% endfor %}
-        </form>
-        
-    </ul>
+            <form id="remove_document_form" method="POST" enctype="multipart/form-data">
+                <input type="hidden" id="confimation_placeholder" name="confimation_placeholder" value="remove_document_document.id goes here">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"><h5>Tên tài liệu</h5></th>
+                            <th scope="col"><h5>Lượt xem</h5></th>
+                            <th scope="col"><h5>Lượt tải</h5></th>
+                            <th scope="col"><h5>Đánh giá</h5></th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for document in uploaded %}
+                            <tr> 
+                                <th scope="row">
+                                    <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a>
+                                </th>
+
+                                <td>{{document.view_count}}</td>
+                                <td>{{document.download_count}}</td>
+                                <td>{{round_float(document.rating, 2)}} sao ({{document.rating_count}} lượt đánh giá)</td>
+
+                                <td>
+                                    <button type="button" 
+                                        class="btn css-btn" 
+                                        id="remove_document_btn" 
+                                        name="remove_document_{{document.id}}">Gỡ khỏi nền tảng</button>
+                                </td>
+                            </tr>
+                        {% endfor %}    
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+        <div class="css-div column" style="gap: 1rem">
+            <h3 class="css-text-blue">Đơn bán của tôi</h3>
+
+            <form id="remove_listing_form" method="POST" enctype="multipart/form-data">
+                <input type="hidden" id="confimation_placeholder" name="confimation_placeholder" value="remove_listing_listing.id goes here">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"><h5>Tên tài liệu</h5></th>
+                            <th scope="col"><h5>Lượt xem</h5></th>
+                            <th scope="col"><h5>Số lượng</h5></th>
+                            <th scope="col"><h5>Đánh giá</h5></th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for listing in listed %}
+                            <tr> 
+                                <th scope="row">
+                                    <a href="{{ url_for('listing_details', id=listing.id) }}">{{listing.name}}</a>
+                                </th>
+
+                                <td>{{listing.view_count}}</td>
+                                <td>{{listing.amount}}</td>
+                                <td>{{round_float(listing.rating, 2)}} sao ({{listing.rating_count}} lượt đánh giá)</td>
+
+                                <td>
+                                    <button type="button" 
+                                        class="btn css-btn" 
+                                        id="remove_document_btn" 
+                                        name="remove_document_{{document.id}}">Gỡ khỏi nền tảng</button>
+                                </td>
+                            </tr>
+                        {% endfor %}    
+                    </tbody>
+                </table>
+            </form>
+        </div> -->
+
+        <div class="css-div column" style="gap: 1rem">
+            <h3 class="css-text-blue">Tài liệu đã đánh dấu</h3>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"><h5>Tên tài liệu</h5></th>
+                        <th scope="col"><h5>Lượt xem</h5></th>
+                        <th scope="col"><h5>Đánh giá</h5></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for document in bookmarked %}
+                        <tr> 
+                            <th scope="row">
+                                    <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a>
+                            </th>
+
+                            <td>{{document.view_count}}</td>
+                            <td>{{round_float(document.rating, 2)}} sao ({{document.rating_count}} lượt đánh giá)</td>
+                        </tr>
+                    {% endfor %}    
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <script>
         const removeButtons = document.querySelectorAll("#remove_document_btn");
@@ -83,15 +153,4 @@
 
 
     </script>
-
-    <h2>Tài liệu đã đánh dấu (Bookmarks)</h2>
-    <ul>
-        {% for document in bookmarked %}
-            <li> 
-                <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a>
-            </li>
-        {% endfor %}
-    </ul>
-
-    
 {% endblock %}
