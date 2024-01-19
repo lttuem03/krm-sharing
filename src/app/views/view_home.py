@@ -1,4 +1,7 @@
-from flask import (render_template)
+from flask import (request,
+                   redirect,
+                   url_for,
+                   render_template)
 
 from flask.views import MethodView
 from flask_login import current_user
@@ -16,3 +19,8 @@ class HomeView(MethodView):
                                top_downloaded=top_downloaded,
                                top_viewed=top_viewed,
                                top_user_upload_count=top_user_upload_count)
+    
+    def post(self):
+        search_text = request.form['search_text']
+
+        return redirect(url_for("search_results", search_text=search_text))
