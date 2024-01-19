@@ -1,0 +1,37 @@
+{% extends "base.html" %} 
+{% block title %} Thư viện tài liệu {% endblock %} 
+
+{% block content %}
+    <h3 style="padding: 10px;">krm-sharing hiện đang có {{ document_count }} tài liệu:</h3>
+
+    <table class="table table-bordered">
+        <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên tài liệu</th>
+                    <th scope="col">Người đăng tải</th>
+                    <th scope="col">Ngày đăng tải</th>
+                    <th scope="col">Loại</th>
+                    <th scope="col">Chủ đề</th>
+                    <th scope="col">Lượt xem</th>
+                    <th scope="col">Lượt tải</th>
+                    <th scope="col">Đánh giá (số lượt)</th>
+                </tr>
+          </thead>
+          <tbody>
+                {% for document in all_documents %}
+                    <tr>
+                        <th scope="row"> {{loop.index}} </th>
+                        <td> <a href="{{ url_for('document_details', id=document.id) }}" style="text-decoration: none;"> {{document.name}} </a></td>
+                        <td> {{get_uploader(document).name}} </td>
+                        <td> {{document.date_uploaded.date()}} </td>
+                        <td> {{document.type}} </td>
+                        <td> {{document.subject}} </td>
+                        <td> {{document.view_count}} </td>
+                        <td> {{document.download_count}} </td>
+                        <td> {{document.rating}} </td>
+                    </tr>
+                {% endfor %}
+          </tbody>
+    </table>
+{% endblock %}
