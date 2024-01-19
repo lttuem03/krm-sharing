@@ -11,7 +11,6 @@ from flask_login import (current_user,
 
 from app.controllers import ListingManagementController
 
-
 class ListingView(View):
     decorators = [login_required]
     methods = ["GET", "POST"]

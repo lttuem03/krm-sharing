@@ -1,3 +1,5 @@
+# most of these helper functions need to be integrated into jinja2 (see app/__init__.py), so it's easier just to put them here
+
 import os
 import re
 

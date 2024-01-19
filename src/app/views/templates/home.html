@@ -24,6 +24,10 @@
                         </button>
                     </span>   
                 </div>
+            
+                <div id="search_suggestion">
+
+                </div>
             </div>
         </form>
     </div>
@@ -43,6 +47,46 @@
             fill="#808080" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
             d="M24.48 64.8L0 48L24.48 0" sodipodi:nodetypes="ccc"/>
     </svg> -->
+</div>
+
+   
+</div>
+
+<!-- top downloaded -->
+<div>
+    <h3>Top tài liệu được tải nhiều nhất</h3>
+    <ul>
+        {% for document in top_downloaded %}
+            <li> 
+                <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a>
+                <p style="display: inline;"> ({{document.download_count}} lượt tải)</p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- top viewed -->
+<div>
+    <h3>Top tài liệu được xem nhiều nhất</h3>
+    <ul>
+        {% for document in top_viewed %}
+            <li> 
+                <a href="{{ url_for('document_details', id=document.id) }}">{{document.name}}</a>
+                <p style="display: inline;"> ({{document.view_count}} lượt xem)</p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- top users with the most upload count -->
+<div>
+    <h3>Top người dùng chia sẻ kiến thức nhiều nhất</h3>
+    {% for user, upload_count in top_user_upload_count.items() %}
+            <li> 
+                <a href="{{ url_for('user_profile', username=user.username) }}">{{user.name}}</a>
+                <p style="display: inline;"> (đã đăng tải {{upload_count}} tài liệu)</p>
+            </li>
+    {% endfor %}
 </div>
 
 <!-- live search functionality, courtesy to: https://youtu.be/hjAnhqR-XZk-->
