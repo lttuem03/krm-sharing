@@ -28,9 +28,15 @@
                     Trang chủ
                 </a></h5> 
                 
-                <h5><a href="#" class="css-underline-animation-white">
-                    Thư viện tài liệu
-                </a></h5>    
+                <h5><a href="{{ url_for('library')}}" class="css-underline-animation-white">
+                    Thư viện tài liệu
+                </a></h5> 
+
+                <!-- {%if user.is_authenticated == True%}
+                <h5><a href="{{ url_for('document_management')}}" class="css-underline-animation-white">
+                    Quản lí tài liệu
+                </a></h5> 
+                {%endif%} -->
             </div>
 
             <!--    Logo    -->
@@ -63,12 +69,12 @@
                     </h5>
     
                     <div id="dropdown-1" class="dropdown-menu">
-                        <a href="{{ url_for('upload') }}" class="dropdown-item"><h5>
-                            Tài liệu điện tử
+                        <a href="{{ url_for('create_listing') }}" class="dropdown-item"><h5>
+                            Tài liệu giấy
                         </h5></a>
 
-                        <a href="{{ url_for('create_listing') }}" class="dropdown-item"><h5>
-                            Tài liệu vật lý
+                        <a href="{{ url_for('upload') }}" class="dropdown-item"><h5>
+                            Tài liệu điện tử
                         </h5></a>
                     </div>
                 </div>

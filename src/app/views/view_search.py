@@ -20,3 +20,9 @@ class SearchResults(MethodView):
         search_results = SearchController.search(search_text)
 
         return render_template("search_results.html", user=current_user, search_text=search_text, search_results=search_results)
+    
+class DocumentLibrary(MethodView):
+    def get(self):
+        all_documents = SearchController.get_all_documents()
+
+        return render_template("document_library.html", user=current_user, document_count=len(all_documents), all_documents=all_documents)

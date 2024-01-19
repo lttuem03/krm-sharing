@@ -18,7 +18,8 @@ from app.views import (HomeView,
                        ListingView,
                        ListingDetailsView,
                        LiveSearchProcessingView,
-                       SearchResults)
+                       SearchResults,
+                       DocumentLibrary)
 
 from app.models import db
 
@@ -80,6 +81,7 @@ krm_app_instance.add_url_rule("/listing_details/<int:id>",endpoint='listing_deta
 
 krm_app_instance.add_url_rule("/livesearch", endpoint="livesearch", view_func=LiveSearchProcessingView.as_view("livesearch"))
 krm_app_instance.add_url_rule("/search_results/keywords=<string:search_text>", endpoint="search_results", view_func=SearchResults.as_view("search_results"))
+krm_app_instance.add_url_rule("/library/", endpoint="library", view_func=DocumentLibrary.as_view("library"))
 
 # Setting up flask-login
 login_manager.login_view = "login"

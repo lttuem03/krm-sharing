@@ -3,94 +3,112 @@
 {% block title %} {{document.name}} {% endblock %}
 
 {% block content %}
-    <img src="{{ url_for('static', filename=get_thumbnail_path(document.id)) }}" style="padding-left: 10px; border: 2px solid; border-color: black;"></img>
-    <h2>Tên tài liệu: {{document.name}}</h2>
-    <h3>Người đăng tải: {{get_uploader(document).name}}</h3>
-    <h3>Ngày đăng tải: {{document.date_uploaded.date()}}</h3>
-    <h3>Loại tài liệu: {{document.type}}</h3>
-    <h3>Môn học/Chủ đề: {{document.subject}}</h3>
-    {%if document.description != None %}
-        <h3>Mô tả: {{document.description}}</h3>
-    {%else%}
-        <h3>Mô tả: (mô tả trống)</h3>
-    {%endif%}
+    <div class="css-div left">
+        <div class="css-div column" style="padding: 3rem 5rem; gap: 1rem;">
+            <h2 class="css-text-blue">{{document.name}}</h2>
 
-    {%if document.author != None %}
-        <h3>Tác giả: {{document.author}}</h3>
-    {%else%}
-        <h3>Tác giả: (không xác định)</h3>
-    {%endif%}
-    
-    {%if document.school != None %}
-        <h3>Trường: {{document.school}}</h3>
-    {%else%}
-        <h3>Trường: (không xác định)</h3>
-    {%endif%}
-    
-    {%if document.year != None %}
-        <h3>Năm soạn thảo/Xuất bản: {{document.year}}</h3>
-    {%else%}
-        <h3>Năm soạn thảo/Xuất bản: (không xác định)</h3>
-    {%endif%}
-    
-    {%if document.file_size < 1024 %}
-        <h3>Kích cỡ tệp tin: {{document.file_size}} KB</h3>
-    {%else%}
-        <h3>Kích cỡ tệp tin: {{kilobyte_to_megabyte(document.file_size)}} MB</h3>
-    {%endif%}
-    
-    <h3> Lượt xem: {{document.view_count}}</h3>
-    <h3 style="display: inline;">
-        Lượt tải:
-    </h3>
+            <img src="{{ url_for('static', filename=get_thumbnail_path(document.id)) }}" style="padding: 1rem; border: 1px solid; border-color: gray;"></img>
 
-    <h3 id="download-count" style="display: inline;">{{document.download_count}}</h3>
-    <h3>Đánh giá: {{round_float(document.rating, 2)}}</h3>
-    <h3>Số lượt đánh giá: {{document.rating_count}}</h3>
-    
-    <form method="POST" enctype="multipart/form-data">
-        <!--Downloading section-->
-        <button id="download-btn" 
-                name="download_request" 
-                type="submit" 
-                class="btn btn-primary"
-                onclick="update_downloadcount()">Tải xuống</button>
+            <div class="css-div justify vertical-center">
+                <h5> Lượt xem: {{document.view_count}}</h5>
+            
+                <div>
+                    <h5 style="display: inline;">Lượt tải:</53>
+                    <h5 id="download-count" style="display: inline;">{{document.download_count}}</h5>
+                </div>
 
-        <!--Bookmarking section-->
-        {%if is_bookmarked_by_current_user(document.id) == False %}
-            <button id="bookmark-btn" 
-                    name="bookmark_request" 
-                    type="submit" 
-                    class="btn btn-primary" 
-                    onclick="change_bookmark_state()" 
-                    style="color: white;">Đánh dấu</button>
-        {%else%}
-            <button id="bookmark-btn" 
-                    name="bookmark_request" 
-                    type="submit" 
-                    class="btn btn-primary" 
-                    onclick="change_bookmark_state()" 
-                    style="color: yellow;">Đã đánh dấu</button>
-        {%endif%}
+                <h5>Đánh giá: {{round_float(document.rating, 2)}}</h5>
+                <h5>Số lượt đánh giá: {{document.rating_count}}</h5>
+            </div>
 
-        <!--Rating section-->
-        <!--Code refered from: https://codepen.io/hesguru/pen/BaybqXv-->
-        <div class="rate" style="display: inline;">
-            <input type="radio" id="star5" name="select_rating" value="5" />
-            <label for="star5" title="text">5 stars</label>
-            <input type="radio" id="star4" name="select_rating" value="4" />
-            <label for="star4" title="text">4 stars</label>
-            <input type="radio" id="star3" name="select_rating" value="3" />
-            <label for="star3" title="text">3 stars</label>
-            <input type="radio" id="star2" name="select_rating" value="2" />
-            <label for="star2" title="text">2 stars</label>
-            <input type="radio" id="star1" name="select_rating" value="1" />
-            <label for="star1" title="text">1 star</label>
+            <form method="POST" enctype="multipart/form-data" class="css-div justify vertical-center">        
+                <!--Rating section-->
+                <!--Code refered from: https://codepen.io/hesguru/pen/BaybqXv-->
+                <div class="css-div vertical-center" style="gap: 1rem;">
+                    <button id="rating-btn" name="rating_request" type="submit" class="btn css-btn"><h5>Đánh giá</h5></button>
 
-            <button id="rating-btn" name="rating_request" type="submit" class="btn btn-primary" style="display: block;">Đánh giá</button>
+                    <div class="rate">
+                        <input type="radio" id="star5" name="select_rating" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="select_rating" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="select_rating" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="select_rating" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="select_rating" value="1" />
+                        <label for="star1" title="text">1 star</label> 
+                    </div>
+                </div>
+
+                <!--Bookmarking section-->
+                {%if is_bookmarked_by_current_user(document.id) == False %}
+                    <button id="bookmark-btn" 
+                            name="bookmark_request" 
+                            type="submit" 
+                            class="btn css-btn" 
+                            onclick="change_bookmark_state()" 
+                            style="color: white;"><h5>Đánh dấu</h5></button>
+                {%else%}
+                    <button id="bookmark-btn" 
+                            name="bookmark_request" 
+                            type="submit" 
+                            class="btn css-btn" 
+                            onclick="change_bookmark_state()" 
+                            style="color: yellow;"><h5>Đã đánh dấu</h5></button>
+                {%endif%}
+            </form>
         </div>
-    </form>
+        
+        <div class="css-div column" style="padding: 7.5rem 0; gap: 6rem;">
+            <div class="css-div column" style="gap: 1rem; border-style: solid; border-width: 1px; border-color: gray; padding: 1rem; border-radius: 2%;">
+                <h4>Người đăng tải: {{get_uploader(document).name}}</h4>
+                <h4>Ngày đăng tải: {{document.date_uploaded.date()}}</h4>
+                <h4>Loại tài liệu: {{document.type}}</h4>
+                <h4>Môn học/Chủ đề: {{document.subject}}</h4>
 
+                {%if document.description != None %}
+                    <h4>Mô tả: {{document.description}}</h4>
+                {%else%}
+                    <h4>Mô tả: (mô tả trống)</h4>
+                {%endif%}
+
+                {%if document.author != None %}
+                    <h4>Tác giả: {{document.author}}</h4>
+                {%else%}
+                    <h4>Tác giả: (không xác định)</h4>
+                {%endif%}
+    
+                {%if document.school != None %}
+                    <h4>Trường: {{document.school}}</h4>
+                {%else%}
+                    <h4>Trường: (không xác định)</h4>
+                {%endif%}
+    
+                {%if document.year != None %}
+                    <h4>Năm soạn thảo/Xuất bản: {{document.year}}</h4>
+                {%else%}
+                    <h4>Năm soạn thảo/Xuất bản: (không xác định)</h4>
+                {%endif%}
+    
+                {%if document.file_size < 1024 %}
+                    <h4>Kích cỡ tệp tin: {{document.file_size}} KB</h4>
+                {%else%}
+                    <h4>Kích cỡ tệp tin: {{kilobyte_to_megabyte(document.file_size)}} MB</h4>
+                {%endif%}
+            </div>
+
+            <form method="POST" enctype="multipart/form-data" style="align-self: center;">
+                <!--Downloading section-->
+                <button id="download-btn" 
+                        name="download_request" 
+                        type="submit" 
+                        class="btn css-btn-2"
+                        onclick="update_downloadcount()"><h4>Tải xuống</h4></button>
+            </form>
+        </div>
+
+    <!-- Javascript -->
     <script>
         function update_downloadcount()
         {

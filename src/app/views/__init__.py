@@ -6,4 +6,4 @@ from .view_document_details import DocumentDetailsView
 from .view_listing_management import ListingView
 from .view_listing_details import ListingDetailsView
 from .view_user_profile import MyProfileView, UserProfileView, ChangeAvatarView, ChangePasswordView
-from .view_search import LiveSearchProcessingView, SearchResults
+from .view_search import LiveSearchProcessingView, SearchResults, DocumentLibrary
