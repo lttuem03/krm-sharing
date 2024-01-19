@@ -20,3 +20,18 @@ class SearchController():
                        if str(search_text).lower() in str(document.name).lower()]
 
         return suggestions
+    
+    @staticmethod
+    def search(search_text):
+        """
+        Perform a search query, return search results
+        """
+        global document_list
+
+        if document_list == None:
+            document_list = QueryEngine.query_all_Documents()
+
+        search_results = [document for document in document_list 
+                          if str(search_text).lower() in str(document.name).lower()]
+
+        return search_results 
