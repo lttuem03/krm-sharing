@@ -89,8 +89,7 @@ class ListingManagementController():
                                   amount=listing_amount,
                                   status=listing_status,
                                   price=listing_price,
-                                  location=listing_location,
-                                  foldername='temp')
+                                  location=listing_location)
 
             db.session.add(new_listing)
             db.session.commit()
