@@ -47,7 +47,6 @@ Listing_column_map = {"id": Listing.id,
                       "rating": Listing.rating,
                       "rating_count": Listing.rating_count}
 
-
 class QueryEngine():
     @staticmethod
     def query_User_by(column, value) -> User:
@@ -68,6 +67,10 @@ class QueryEngine():
         return User.query.filter(User_column_map[column] == value)
 
     @staticmethod
+    def query_all_Users() -> Query:
+        return User.query.all()
+
+    @staticmethod
     def query_Document_by(column, value) -> Document:
         """ Return the first row of the Document query result """
         if column not in Document_column_map:
@@ -84,6 +87,10 @@ class QueryEngine():
             return None
 
         return Document.query.filter(Document_column_map[column] == value)
+
+    @staticmethod
+    def query_top_Documents_by(column, amount) -> Query:
+        return Document.query.order_by(Document_column_map[column].desc()).limit(amount)
 
     @staticmethod
     def query_all_Documents() -> Query:
