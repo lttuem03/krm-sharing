@@ -10,6 +10,7 @@ from flask_login import (current_user,
                         login_required)
 
 from app.controllers import DocumentManagementController
+from app.controllers import ListingManagementController
 
 class UploadView(View):
     decorators = [login_required]
@@ -47,6 +48,7 @@ class DocumentManagementView(View):
     def dispatch_request(self):
         uploaded = DocumentManagementController.get_uploaded(user_id=current_user.id)
         bookmarked = DocumentManagementController.get_bookmarked(user_id=current_user.id)
+        listed = ListingManagementController.get_uploaded(user_id=current_user.id)
 
         if request.method == "POST":
             print(request.form['confimation_placeholder'])
@@ -59,12 +61,22 @@ class DocumentManagementView(View):
                     # removing this document
                     to_be_removed = document
                     print("removing " + request_name)
+                    
+            for listing in listed:
+                request_name = "remove_listing_" + str(listing.id)
+                if request_name == request.form['confimation_placeholder']:
+                    # removing this listing
+                    to_be_removed = listing
+                    print("removing " + request_name)
                     break
 
             if to_be_removed:
                 remove_successful = DocumentManagementController.remove_document(to_be_removed)
-                
                 if remove_successful:
                     flash("Gỡ tài liệu khỏi nền tẳng thành công", category="success")  
+                else :
+                    delete_status = ListingManagementController.delete_listing(to_be_removed)
+                    if delete_status:
+                        flash("Đơn bán đã được gỡ",category="success")
             
-        return render_template("document_management.html", user=current_user, uploaded=uploaded, bookmarked=bookmarked)
+        return render_template("document_management.html", user=current_user, uploaded=uploaded, bookmarked=bookmarked,listed=listed)

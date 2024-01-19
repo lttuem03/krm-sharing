@@ -41,7 +41,7 @@ Listing_column_map = {"id": Listing.id,
                       "price": Listing.price,
                       "amount":Listing.amount,
                       "location": Listing.location,
-                      "filename": Listing.foldername,
+                      "foldername": Listing.foldername,
                       "view_count": Listing.view_count,
                       "rating": Listing.rating,
                       "rating_count": Listing.rating_count}
