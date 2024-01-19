@@ -35,3 +35,7 @@ class SearchController():
                           if str(search_text).lower() in str(document.name).lower()]
 
         return search_results 
+
+    @staticmethod
+    def get_all_documents():
+        return QueryEngine.query_all_Documents()
