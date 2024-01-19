@@ -99,7 +99,6 @@ krm_app_instance.jinja_env.globals.update(get_average_rating=get_average_rating)
 krm_app_instance.jinja_env.globals.update(round_float=round_float)
 krm_app_instance.jinja_env.globals.update(get_current_avatar_path=get_current_avatar_path)
 krm_app_instance.jinja_env.globals.update(get_listing_thumbnail=get_listing_thumbnail)
-krm_app_instance.jinja_env.globals.update(get_listing_thumbnail=get_listing_thumbnail)
 krm_app_instance.jinja_env.globals.update(get_image_list=get_image_list)
 krm_app_instance.jinja_env.globals.update(
     get_postid=get_postid)
