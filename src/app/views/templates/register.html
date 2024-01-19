@@ -1,34 +1,46 @@
-{% extends "base.html" %} {% block title %}Đăng ký{% endblock %} {% block
-content %}
-<div class="css-background-1">
-    <form method="POST" class="css-container" style="width: 50%;">
-        <h3 align="center">Đăng ký</h3>
+{% extends "base.html" %}
 
-        <div class="css-form-row">
+{% block title %}Đăng ký{% endblock %}
 
-            <div class ="css-form" style="width: 50%;">
-                <label for="name"><h4>Họ và tên</h4></label>
-                <input type="text" class="css-field css-gradient-border" id="name" name="name" placeholder="Nhập họ và tên" required/>
-                
-                <label for="email"><h4>Địa chỉ Email</h4></label>
-                <input type="email" class="css-field css-gradient-border" id="email" name="email" placeholder="Nhập địa chỉ email" required/>
+{% block content %}
+<head>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Màu xám nhạt */
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="content-container p-4 bg-white rounded">
+            <div class="css-background-1">
+                <form method="POST" class="css-container">
+                    <h2 class="text-primary text-center">Đăng ký</h2>
+                    <div class="form-group">
+                        <label for="name"class="small">Họ và tên</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập họ và tên" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"class="small">Địa chỉ Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Nhập địa chỉ email" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="username"class="small">Tên đăng nhập</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập (5-24 kí tự)" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"class="small">Mật khẩu</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="repeat_password"class="small">Nhập lại mật khẩu</label>
+                        <input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder="Nhập lại mật khẩu" required/>
+                    </div> 
+                    <button type="submit" class="btn btn-primary btn-block btn-sm mx-auto mt-3">Xác nhận</button>
+                </form>
             </div>
-            
-            <div class="css-form" style="width: 50%;">
-                <label for="username"><h4>Tên đăng nhập</h4></label>
-                <input type="text" class="css-field css-gradient-border" id="username" name="username" placeholder="Tên đăng nhập (5-24 kí tự)" required/>
-                
-                <label for="password"><h4>Mật khẩu</h4></label>
-                <input type="password" class="css-field css-gradient-border" id="password" name="password" placeholder="Mật khẩu" required/>
-                
-                <label for="repeat_password"><h4>Nhập lại mật khẩu</h4></label>
-                <input type="password" class="css-field css-gradient-border" id="repeat_password" name="repeat_password" placeholder="Nhập lại mật khẩu" required/>
-            </div>
-            
-            
         </div>
-            
-        <button type="submit" class="css-gradient-border css-content-center"><h5>Xác nhận</h5></button>
-    </form>
-</div>
+    </div>
+</body>
 {% endblock %}

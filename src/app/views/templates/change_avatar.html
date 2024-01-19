@@ -1,21 +1,36 @@
 {% extends "base.html" %}
 {% block title %} Đổi ảnh đại diện {% endblock %}
 {% block content %}
-    <div>
-        <p>Ảnh hiện tại</p>
-        <img src="{{ get_current_avatar_path(user.id) }}" width="300px" height="300px"></img>
+<h4 class="text-primary text-center">Tải lên ảnh đại diện mới</h4>   
+<div class="container">
+    <div class="row mb-3 d-flex justify-content-center">
+      Ảnh hiện tại
     </div>
-    
-    <div>
-        <p>Tải lên ảnh đại diện mới</p> 
+  
+    <div class="row mb-3">
+      <div class="col-md-12 text-center">
+        <img src="{{ get_current_avatar_path(user.id) }}" class="rounded mx-auto d-block" width="300px" height="300px" alt="Ảnh đại diện">
+      </div>
+    </div>
+  
+    <div class="row mb-3 d-flex justify-content-center">
+      <div class="col-md-12 text-center">
+        
         <form method="POST" enctype="multipart/form-data">
-            <label class="form-label">Chọn file ảnh đại diện mới (*.jpg, *.jpeg, *.png)</label>
-            <input type="file" name="file" class="form-control-file" style="display: block;">
-
-            <button id="change-avatar-btn" 
-                    name="change_avatar_request" 
-                    type="submit" 
-                    class="btn btn-primary">Lưu ảnh đại diện</button>
+            <div class="form-group d-flex justify-content-center">
+                <label for="file" class="form-label">Chọn file ảnh đại diện mới (*.jpg, *.jpeg, *.png)</label>
+              </div>
+              <div class="form-group d-flex justify-content-center">
+                <input type="file" name="file" id="file" class="form-control-file" style="display: block;">
+              </div>
+  
+          <div class="form-group d-flex justify-content-center">
+            <button id="change-avatar-btn" name="change_avatar_request" type="submit" class="btn btn-primary">Lưu ảnh đại diện</button>
+          </div>
         </form>
+      </div>
     </div>
+  </div>
+        
+    
 {% endblock %}
