@@ -2,20 +2,14 @@
 
 {% block title %}krm-sharing: Nền tảng chia sẻ tài liệu{% endblock %}
 
-{% block style%}
-<link rel="stylesheet" href="{{url_for('static',filename='/css/index.css')}}"> 
-
-{% endblock %}
-
 {% block content %}
-
-
-<div class="bg-image shadow-2-strong" style="background-image: url('/static/images/background.jpg'); background-size: cover; height: 100vh; width: 100vw; margin: 0;">
-    <div class="container d-flex align-items-center justify-content-center text-center h-100">
+<div class="css-background-1">
+    <div class="container d-flex flex-column align-items-center justify-content-center text-center h-100" style="gap: 10rem">
         
+        <h1>Hôm nay bạn muốn tìm gì ?</h1>
+
         <form role="form" autocomplete="off" id="form-buscar" method="POST" style="background-color: (1, 1, 1, 0.5);">
             <div class="form-group">
-                
                 <div class="input-group">
                     <input class="form-control" 
                            type="text" 
@@ -25,20 +19,30 @@
                            placeholder="Nhập tên tài liệu bạn cần tìm kiếm"/>
 
                     <span class="input-group-btn">
-                        <button class="btn btn-success" type="submit">
-                            <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Tìm kiếm
+                        <button class="btn css-btn" type="submit">
+                            <h5 class="css-light-italic">Tìm kiếm</h5>   
                         </button>
                     </span>   
-                </div>
-                
-                <div id="search_suggestion">
-
                 </div>
             </div>
         </form>
     </div>
 
-    
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" 
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:krita="http://krita.org/namespaces/svg/krita"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        idth="30.72pt"
+        height="30.72pt"
+        viewBox="0 0 30.72 30.72">
+    <defs/>
+        <path id="shape0" transform="matrix(0.144289460739414 0 0 0.144289460739414 0.239999891039226 2.45041425073217)" 
+            fill="#464646" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
+            d="M0 50.64L186 -5.32907e-15L205.68 69.36C206 72.72 205.2 76.08 203.28 79.44C201.36 82.8 194 96.48 181.2 120.48L197.28 131.28C205.68 135.6 207.68 138.24 203.28 139.2C198.88 140.16 142.64 155.36 34.56 184.8Z" sodipodi:nodetypes="ccczcczcc"/>
+        <path id="shape1" transform="matrix(0.144289460739414 0 0 0.144289460739414 26.3506207064436 12.9431438357024)" 
+            fill="#808080" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" 
+            d="M24.48 64.8L0 48L24.48 0" sodipodi:nodetypes="ccc"/>
+    </svg> -->
 </div>
 
 <!-- live search functionality, courtesy to: https://youtu.be/hjAnhqR-XZk-->
