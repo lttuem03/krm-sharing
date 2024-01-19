@@ -40,7 +40,7 @@ body, html {
     height: 100%;
 }
 
-/*          Header style            */
+/*          Header            */
 h1 {
     font-size: 3.42331rem;
     font-style: normal;
@@ -105,125 +105,191 @@ h6 {
     margin: 0.1rem;
 }
 
-/*          Button style            */
-button.css-gradient-border {
-    border-radius: 1.875rem;
-    border: 3px solid transparent; 
-    background: 
-        linear-gradient(#FFF,#FFF) padding-box,
-        linear-gradient(to right, #FEFF5E,#FF8EA9) border-box;
-}
-
-button.css-gradient-border:hover {
-    background: linear-gradient(to right, #FEFF5E,#FF8EA9) border-box;
-    color: #5C5C5C;
-}
-
-button.css-gradient-border:active {
-    background: 
-        linear-gradient(rgba(62, 62, 62, 0.40), rgba(62, 62, 62, 0.40)), 
-        linear-gradient(90deg, #FEFF5E, #FF8EA9);
-    color: #5C5C5C;
-    background-clip: border-box;
-    background-origin: border-box;
-}
-
-button.css-content-center {
-    display: inline-flex;
-    width: fit-content;
-    padding: 0.25rem 0.75rem;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    gap: 1rem;
-}
-
-/*          Navigation bar style         */
-.css-nav {
-    border-bottom: 5px solid;
-    background: #F4F4F4;
-    color: black;
-    padding: 0.5rem 2.5rem;
-}
-
-.css-nav.css-gradient-border {
-    border-color: transparent;
-    background: 
-        linear-gradient(#F4F4F4, #F4F4F4) padding-box,
-        linear-gradient(to right, #FEFF5E,#FF8EA9) border-box;
-}
-
-/*          Container style         */
-.css-container {
-    padding: 1rem 1rem;
-    width: 30%;
-    height: fit-content;
+/*          Sections            */
+.css-div {
     display: flex;
-    flex-flow: column wrap;
-    align-self: center;
-    background: white padding-box;
-    justify-content: space-evenly;
-    align-items: stretch;
-    gap: 2.5rem;
-    border-radius: 10px;
+    justify-content: center;
+    height: fit-content; 
 }
 
-.css-form {
+.css-div.column {
+    flex-direction: column;
+}
+
+.css-div.left {
+    justify-content: left;
+    flex-grow: 1;
+    flex-basis: 0;
+    gap: 1.5rem;
+}
+
+.css-div.right {
+    justify-content: right;
+    flex-grow: 1;
+    flex-basis: 0;
+    gap: 1.5rem;
+}
+
+.css-div.justify {
+    justify-content: space-between;
+}
+
+.css-div.vertical-center {
+    align-items: center;
+}
+
+.css-container {
+    width: 50rem;
+    height: fit-content;
+
+    background-color: white;
+    border-radius: 5%;
+
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-}
-
-.css-form-row {
-    display: flex;
-    flex-direction: row;
     justify-content: center;
-    gap: 3rem;
+    padding: 5rem;
+    gap: 2rem;
 }
 
-/*          Field style         */
-.css-field {
-    appearance: none;
-    display: block;
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    justify-content: left;
-}
-
-.css-field.css-gradient-border {
-    border-style: solid;
-    border-color: transparent;
-    background: 
-        linear-gradient(#fcfeff, #fcfeff) padding-box,
-        linear-gradient(to right, #FEFF5E,#FF8EA9) border-box;
-}
-
-.css-field.css-gradient-border:focus {
-    border-style: solid;
-    border-color: #00FAFF;
-}
-
-/*          Link style          */
-a.css-text-dark {
-    color: rgb(0, 0, 0);
-}
-
-a.css-text-dark:hover {
-    color: rgb(145, 143, 143);
-}
-
-a.css-text-dark:active {
-    color: #064580;
+/*          Margin          */
+.css-margin {
+    margin: 0 3.5rem;
 }
 
 /*          Background          */
+.css-background-grad-1 {
+    background: linear-gradient(to right,#2785C7 0%, #95DFFD 37%, #FFF 47%, #FFF 53%, #99E0FF 63%, #19BCD3 100%);
+}
+
 .css-background-1 {
-    width: 100vw;
     height: 100vh;
     margin: 0;
+
+    background:
+        linear-gradient(#ffffff88, #ffffff88),
+        url(..\\images\\background-2.jpg) center center no-repeat;
+
+    background-size: cover;
+}
+
+.css-background-2 {
+    height: 100vh;
+    margin: 0;
+    
+    background-color: #F2F2F2;
     display: flex;
     justify-content: center;
-    background:
-        linear-gradient(#0f0f0f9d, #0f0f0f9d),
-        url(..\\images\\background.jpg);
+    padding-top: 5rem;
+}
+
+/*          Text color          */
+.css-text-black {
+    color: black;
+}
+
+.css-text-white {
+    color: white;
+}
+
+/*          Text animation          */
+
+/*  White underline animation   */
+.css-underline-animation-white {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: #ffffff;
+  }
+  
+.css-underline-animation-white::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+.css-underline-animation-white:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    cursor: pointer;
+}
+
+/*  Black underline animation   */
+.css-underline-animation-black {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: black;
+  }
+  
+.css-underline-animation-black::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+.css-underline-animation-black:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    cursor: pointer;
+}
+
+/*          Dropdown          */
+.css-dropdown {
+    display: inline-block;
+    position: relative;
+    width: max-content;
+    margin: auto 0;
+}
+
+.css-dropdown-options {
+    display: none;
+    position: absolute; 
+
+    border-radius: 5%;
+    border-color: #bdbdbd;
+    border-style: solid;
+    border-width: 1px;
+
+    overflow: auto;
+    background-color:#ffffff;
+    z-index: 2;
+}
+
+.css-dropdown-options a {
+    display: block;
+    width: max-content;
+
+    color: #000000;
+    text-decoration: none;
+
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+}
+
+/*      Button design       */
+.css-btn {
+    background-color: #2785C7;
+    color: #FFF;
+}
+
+.css-btn:hover {
+    background-color: #99E0FF;
+    color: black;
 }
