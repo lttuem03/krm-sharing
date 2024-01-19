@@ -12,7 +12,7 @@ from app.models.query_engine import QueryEngine
 
 from .utils import (allowed_file)
 
-from ..config import UPLOAD_FOLDER
+from ..config import LISTING_PREVIEW
 
 from shutil import rmtree
 
@@ -97,7 +97,9 @@ class ListingManagementController():
             folder_name = f'[krm-{new_listing.id}] {listing_name}'
             new_listing.foldername = folder_name
             db.session.commit()
-            save_folder = os.path.join(UPLOAD_FOLDER, folder_name)
+            save_folder = os.path.join(LISTING_PREVIEW, folder_name)
+            if not os.path.exists(LISTING_PREVIEW):
+                os.makedirs(LISTING_PREVIEW)
             if not os.path.exists(save_folder):
                 os.makedirs(save_folder)
             for file in files:
@@ -144,7 +146,7 @@ class ListingManagementController():
         """
         # Remove from the file server
         try:
-            rmtree(os.path.join(UPLOAD_FOLDER, listing.foldername),ignore_errors=True)
+            rmtree(os.path.join(LISTING_PREVIEW, listing.foldername),ignore_errors=True)
         except OSError:
             pass
 
