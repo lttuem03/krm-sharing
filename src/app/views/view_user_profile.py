@@ -27,7 +27,7 @@ class UserProfileView(MethodView):
     def get(self, username):
         user = UserProfileController.get_user(username)
 
-        return render_template("user_profile.html", user=user, current_user=current_user)
+        return render_template("user_profile.html", user=current_user, profile_user=user)
     
 class ChangeAvatarView(MethodView):
     def get(self):
