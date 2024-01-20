@@ -71,10 +71,11 @@ class DocumentManagementView(View):
                     break
 
             if to_be_removed:
-                remove_successful = DocumentManagementController.remove_document(to_be_removed)
-                if remove_successful:
-                    flash("Gỡ tài liệu khỏi nền tẳng thành công", category="success")  
-                else :
+                if "document" in request_name:
+                    remove_successful = DocumentManagementController.remove_document(to_be_removed)
+                    if remove_successful:
+                        flash("Gỡ tài liệu khỏi nền tẳng thành công", category="success")  
+                else:
                     delete_status = ListingManagementController.delete_listing(to_be_removed)
                     if delete_status:
                         flash("Đơn bán đã được gỡ",category="success")

@@ -52,6 +52,9 @@ if os.path.exists(DOCUMENT_THUMBNAIL_FOLDER) == False:
 if os.path.exists(USER_AVATAR_FOLDER) == False:
     os.mkdir(USER_AVATAR_FOLDER)
 
+if os.path.exists(LISTING_PREVIEW) == False:
+    os.mkdir(LISTING_PREVIEW)
+
 # Configs
 krm_app_instance.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 krm_app_instance.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH_IN_MB * 1024 * 1024 # in bytes

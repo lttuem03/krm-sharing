@@ -21,8 +21,6 @@ class ListingView(View):
                 request=request)
 
             if new_document != None:
-                # redirect to the listing detail page for the newly uploaded listing
-                # we'll leave this here for now (until I implement the DocumentDetailsView)
                 return redirect(url_for("listing_details", id=new_document.id))
 
         return render_template("create_listing.html", user=current_user)

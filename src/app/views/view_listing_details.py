@@ -26,15 +26,8 @@ class ListingDetailsView(MethodView):
         if listing == None:
             return render_template("document_not_exists.html", user=current_user)
 
-        if "download_request" in request.form:
-            ListingDetailsController.update_downloadcount(listing)
-            return send_from_directory(LISTING_PREVIEW, listing.filename, as_attachment=True)
-
-        if "bookmark_request" in request.form:
-            ListingDetailsController.change_bookmark_state(listing)
-            return render_template("listing_details.html", user=current_user, listing=listing)
-
         if "rating_request" in request.form:
             rating = request.form.get("select_rating")
             ListingDetailsController.update_rating(listing, int(rating))
-            return render_template("listing_details.html", user=current_user, listing=listing)
+        
+        return render_template("listing_details.html", user=current_user, listing=listing)

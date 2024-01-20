@@ -12,47 +12,7 @@
 
             <div class="css-div justify vertical-center">
                 <h5> Lượt xem: {{listing.view_count}}</h5>
-                <h5>Đánh giá: {{round_float(listing.rating, 2)}}</h5>
-                <h5>Số lượt đánh giá: {{listing.rating_count}}</h5>
             </div>
-
-            <form method="POST" enctype="multipart/form-data" class="css-div justify vertical-center">        
-                <!--Rating section-->
-                <!--Code refered from: https://codepen.io/hesguru/pen/BaybqXv-->
-                <div class="css-div vertical-center" style="gap: 1rem;">
-                    <button id="rating-btn" name="rating_request" type="submit" class="btn css-btn"><h5>Đánh giá</h5></button>
-
-                    <div class="rate">
-                        <input type="radio" id="star5" name="select_rating" value="5" />
-                        <label for="star5" title="text">5 stars</label>
-                        <input type="radio" id="star4" name="select_rating" value="4" />
-                        <label for="star4" title="text">4 stars</label>
-                        <input type="radio" id="star3" name="select_rating" value="3" />
-                        <label for="star3" title="text">3 stars</label>
-                        <input type="radio" id="star2" name="select_rating" value="2" />
-                        <label for="star2" title="text">2 stars</label>
-                        <input type="radio" id="star1" name="select_rating" value="1" />
-                        <label for="star1" title="text">1 star</label> 
-                    </div>
-                </div>
-
-                <!--Bookmarking section-->
-                {%if is_bookmarked_by_current_user(listing.id) == False %}
-                    <button id="bookmark-btn" 
-                            name="bookmark_request" 
-                            type="submit" 
-                            class="btn css-btn" 
-                            onclick="change_bookmark_state()" 
-                            style="color: white;"><h5>Đánh dấu</h5></button>
-                {%else%}
-                    <button id="bookmark-btn" 
-                            name="bookmark_request" 
-                            type="submit" 
-                            class="btn css-btn" 
-                            onclick="change_bookmark_state()" 
-                            style="color: yellow;"><h5>Đã đánh dấu</h5></button>
-                {%endif%}
-            </form>
         </div>
         
         <div class="css-div column" style="padding: 7.5rem 0; gap: 6rem;">
@@ -92,42 +52,36 @@
                 <h4>Khu vực người bán : {{listing.location}}</h4>
             </div>
 
-            <form method="POST" enctype="multipart/form-data" style="align-self: center;">
-                <!--Downloading section-->
-                <button id="download-btn" 
-                        name="download_request" 
+            <!--Buy section-->
+            <dialog id="contact_seller_dialog">
+                <p>Bạn hãy liên lạc với người bán qua địa chỉ email này nhé:</p>
+                <p> {{get_postid(listing).email}} </p>
+                <div>
+                    <button id="close_btn">Xác nhận</button>
+                </div>
+            </dialog>
+
+            <button id="buy-btn" 
+                        name="buy" 
                         type="submit" 
                         class="btn css-btn-2"
-                        onclick="update_downloadcount()"><h4>Tải xuống</h4></button>
-            </form>
+                        style="padding-top: -40px;"><h4>Liên hệ với người bán</h4></button>
         </div>
 
-    <!-- Javascript -->
-    <script>
-        function update_downloadcount()
-        {
-            //alert("Button clicked")
-            let current = parseInt(document.getElementById("download-count").innerHTML);
-            console.log(current);
-            document.getElementById("download-count").innerHTML = String(current + 1);
-            console.log(current);
-        }
+        <script>
+            const dialog = document.getElementById("contact_seller_dialog");
+            const buyButton = document.getElementById("buy-btn");
+            const closeButton = document.getElementById("close_btn");
 
-        function change_bookmark_state()
-        {
-            let current_state = document.getElementById("bookmark-btn").innerHTML;
-            
-            if (current_state == "Đánh dấu")
-            {
-                document.getElementById("bookmark-btn").innerHTML = "Đã đánh dấu";
-                document.getElementById("bookmark-btn").style.color = "yellow";
-            }
-            else if (current_state == "Đã đánh dấu")
-            {
-                document.getElementById("bookmark-btn").innerHTML = "Đánh dấu";
-                document.getElementById("bookmark-btn").style.color = "white";
-            }
-        }
-    </script>
+            buyButton.addEventListener("click", (e) => {
+                dialog.showModal();
+            });
+
+            closeButton.addEventListener("click", (e) => {
+                dialog.close();
+            });
+
+
+        </script>
 
 {% endblock %}
